@@ -1,0 +1,886 @@
+/* ==========================================================================
+   1. GENEL AYARLAR VE SIFIRLAMA
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #ffffff;
+    color: #333333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.section-padding {
+    padding: 100px 0;
+}
+
+.bg-light {
+    background-color: #f9fbfd;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-title h2 {
+    font-size: 36px;
+    font-weight: 700;
+    color: #111111;
+    margin-bottom: 10px;
+}
+
+.section-title p {
+    color: #666666;
+    font-size: 16px;
+}
+
+.margin-top-40 { 
+    margin-top: 40px; 
+}
+
+.margin-top-30 { 
+    margin-top: 30px; 
+}
+
+/* Genel Buton Stili */
+.btn-primary {
+    display: inline-block;
+    background-color: #0066ff;
+    color: #ffffff;
+    padding: 12px 30px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background 0.3s ease, transform 0.2s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background-color: #0052cc;
+    transform: translateY(-2px);
+}
+
+/* Grid Yapısı */
+.grid-2-col {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+}
+
+/* ==========================================================================
+   2. HEADER & NAVİGASYON
+   ========================================================================== */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #ffffff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    z-index: 1000;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+}
+
+.logo img {
+    height: 45px;
+    object-fit: contain;
+}
+
+.logo-text {
+    font-size: 18px;
+    font-weight: 700;
+    color: #111111;
+    white-space: nowrap;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #333333;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #0066ff;
+}
+
+/* Header Sosyal Medya İkonları */
+.header-social-item {
+    display: flex;
+    align-items: center;
+}
+
+.header-social-links {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: 5px;
+}
+
+.header-social-links a {
+    color: #0066ff;
+    background-color: #f0f5ff;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    font-size: 15px;
+}
+
+.header-social-links a:hover {
+    background-color: #0066ff;
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+/* Açılır Menü (Dropdown) */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #ffffff;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    list-style: none;
+    padding: 10px 0;
+    width: 240px;
+    border-radius: 8px;
+    display: none;
+    flex-direction: column;
+    gap: 0;
+}
+
+.dropdown-menu li a {
+    padding: 10px 20px;
+    display: block;
+    font-size: 14px;
+}
+
+.dropdown-menu li a:hover {
+    background-color: #f8f9fa;
+    color: #0066ff;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: flex;
+}
+
+.menu-toggle {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* ==========================================================================
+   3. HERO (ANA SAYFA) BÖLÜMÜ
+   ========================================================================== */
+.hero {
+    padding: 160px 0 100px;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+}
+
+.hero-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+}
+
+.hero-text h1 {
+    font-size: 48px;
+    font-weight: 700;
+    color: #111111;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.hero-text h1 span {
+    color: #0066ff;
+}
+
+.hero-text p {
+    font-size: 16px;
+    color: #555555;
+    margin-bottom: 30px;
+}
+
+.hero-image img {
+    max-width: 450px;
+    width: 100%;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+/* ==========================================================================
+   4. HAKKIMIZDA BÖLÜMÜ
+   ========================================================================== */
+.about-hero {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    margin-bottom: 50px;
+}
+
+.about-hero-img img, 
+.story-image img, 
+.workflow-img img {
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.about-hero-text h3 {
+    font-size: 28px;
+    margin-bottom: 15px;
+    color: #111111;
+}
+
+.info-card, .list-card, .step-card {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    border: 1px solid #eaeaea;
+}
+
+.icon-box {
+    font-size: 30px;
+    color: #0066ff;
+    margin-bottom: 15px;
+}
+
+.list-card h3 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #0066ff;
+}
+
+.list-card ul {
+    list-style: none;
+    margin-bottom: 15px;
+}
+
+.list-card ul li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #555;
+}
+
+.list-card ul li::before {
+    content: "•";
+    color: #0066ff;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+}
+
+.card-footer-text {
+    font-size: 13px;
+    color: #777;
+    font-style: italic;
+}
+
+/* ==========================================================================
+   5. HİKAYEMİZ BÖLÜMÜ
+   ========================================================================== */
+.story-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+.story-content h3 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #111;
+}
+
+.story-content p {
+    margin-bottom: 15px;
+    font-size: 15px;
+    color: #555;
+}
+
+/* ==========================================================================
+   6. NASIL ÇALIŞIYORUZ BÖLÜMÜ
+   ========================================================================== */
+.workflow-intro {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.workflow-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.step-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.step-number {
+    font-size: 40px;
+    font-weight: 700;
+    color: rgba(0, 102, 255, 0.1);
+    margin-bottom: 10px;
+}
+
+.step-card h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #111;
+}
+
+.step-card ul {
+    list-style: none;
+    font-size: 14px;
+    color: #555;
+}
+
+.step-card ul li {
+    margin-bottom: 5px;
+}
+
+/* ==========================================================================
+   7. HİZMETLER BÖLÜMÜ
+   ========================================================================== */
+.services-list-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.service-detail-card {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
+
+.service-detail-card:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+.service-img img {
+    width: 350px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.service-info {
+    flex: 1;
+}
+
+.service-icon-title {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.service-icon-title i {
+    font-size: 28px;
+    color: #0066ff;
+}
+
+.service-icon-title h3 {
+    font-size: 22px;
+    color: #111;
+}
+
+.service-info p {
+    font-size: 15px;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.service-info ul {
+    list-style: none;
+}
+
+.service-info ul li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #444;
+}
+
+.service-info ul li::before {
+    content: "✓";
+    color: #0066ff;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+}
+
+/* ==========================================================================
+   8. S.S.S. (SIKÇA SORULAN SORULAR)
+   ========================================================================== */
+.faq-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 40px;
+    align-items: start;
+}
+
+.faq-image {
+    position: sticky;
+    top: 100px;
+}
+
+.faq-image img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    border-radius: 16px;
+    object-fit: cover;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.faq-accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.faq-item {
+    background-color: #ffffff;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.faq-item[open] {
+    border-color: #2563eb;
+    box-shadow: 0 6px 20px rgba(37, 99, 235, 0.1);
+}
+
+.faq-question {
+    padding: 18px 22px;
+    font-weight: 600;
+    font-size: 15px;
+    color: #1e293b;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+}
+
+.faq-question::-webkit-details-marker {
+    display: none;
+}
+
+.faq-question i {
+    color: #2563eb;
+    font-size: 14px;
+    transition: transform 0.3s ease;
+}
+
+.faq-item[open] .faq-question i {
+    transform: rotate(180deg);
+}
+
+.faq-answer {
+    padding: 0 22px 18px 22px;
+    color: #475569;
+    font-size: 14px;
+    line-height: 1.7;
+    border-top: 1px solid #f3f4f6;
+    margin-top: 4px;
+    padding-top: 14px;
+}
+
+/* ==========================================================================
+   9. İLETİŞİM BÖLÜMÜ
+   ========================================================================== */
+.contact-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.05);
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    justify-content: center;
+}
+
+.contact-image {
+    width: 100%;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.contact-image img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    display: block;
+    object-fit: cover;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.info-item i {
+    font-size: 24px;
+    color: #0066ff;
+    background: rgba(0, 102, 255, 0.1);
+    padding: 15px;
+    border-radius: 50%;
+}
+
+.info-item h4 {
+    font-size: 16px;
+    color: #111;
+    margin-bottom: 2px;
+}
+
+.info-item p {
+    font-size: 14px;
+    color: #666;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    outline: none;
+    font-size: 14px;
+    transition: border-color 0.3s;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: #0066ff;
+}
+
+/* ==========================================================================
+   10. FOOTER / ALT BİLGİ & YASAL LİNKLER
+   ========================================================================== */
+footer {
+    background-color: #111111;
+    color: #ffffff;
+    padding: 30px 0;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-content p {
+    font-size: 14px;
+    color: #aaa;
+}
+
+.legal-links {
+    font-size: 13px;
+    color: #888888;
+}
+
+.legal-links a {
+    color: #aaaaaa;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    margin: 0 5px;
+}
+
+.legal-links a:hover {
+    color: #0066ff;
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+}
+
+.social-links a {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.1);
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background 0.3s;
+    text-decoration: none;
+}
+
+.social-links a:hover {
+    background: #0066ff;
+}
+
+/* ==========================================================================
+   11. SAYFA BAŞINA DÖN (SCROLL TO TOP) BUTONU
+   ========================================================================== */
+.scroll-top-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 45px;
+    height: 45px;
+    background-color: #0066ff;
+    color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(0, 102, 255, 0.3);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 999;
+}
+
+.scroll-top-btn.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.scroll-top-btn:hover {
+    background-color: #0052cc;
+    color: #ffffff;
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0, 102, 255, 0.4);
+}
+
+/* ==========================================================================
+   12. YASAL METİNLER & MODAL PENCERE STİLLERİ
+   ========================================================================== */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+}
+
+.modal-content {
+    background-color: #ffffff;
+    margin: 8% auto;
+    padding: 30px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 650px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    position: relative;
+    max-height: 80vh;
+    overflow-y: auto;
+    animation: modalFadeIn 0.3s ease;
+}
+
+@keyframes modalFadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.close-modal {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+    top: 15px;
+}
+
+.close-modal:hover {
+    color: #000;
+}
+
+.modal-content h2 {
+    font-size: 22px;
+    color: #111;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #0066ff;
+    padding-bottom: 8px;
+}
+
+.modal-body {
+    font-size: 14px;
+    color: #444;
+    line-height: 1.7;
+}
+
+.modal-body p {
+    margin-bottom: 12px;
+}
+
+.modal-body ul {
+    margin: 10px 0 15px 20px;
+}
+
+.modal-body ul li {
+    margin-bottom: 6px;
+}
+
+/* ==========================================================================
+   13. RESPONSIVE (DUYARLI) UYUMLULUK KODLARI
+   ========================================================================== */
+@media (max-width: 992px) {
+    .hero-content, 
+    .about-hero, 
+    .story-wrapper, 
+    .workflow-intro, 
+    .contact-wrapper {
+        flex-direction: column;
+    }
+
+    .workflow-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .service-detail-card, 
+    .service-detail-card:nth-child(even) {
+        flex-direction: column;
+    }
+
+    .service-img img {
+        width: 100%;
+    }
+
+    .faq-wrapper {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .faq-image {
+        position: static;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        background: #ffffff;
+        padding: 20px;
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .header-social-links {
+        margin-left: 0;
+        margin-top: 10px;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .grid-2-col, 
+    .workflow-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-text h1 {
+        font-size: 36px;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    
+    .modal-content {
+        margin: 20% auto;
+        padding: 20px;
+    }
+}
