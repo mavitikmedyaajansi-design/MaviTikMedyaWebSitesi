@@ -2917,7 +2917,7 @@
             width: 0%;
             background: linear-gradient(90deg, #0040A8, #0062FF, #00C2FF, #FFFFFF);
             box-shadow: 0 0 10px rgba(0, 194, 255, 0.9);
-            transition: width 2.4s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: width 4.0s cubic-bezier(0.16, 1, 0.3, 1);
             z-index: 100;
         }
 
@@ -2932,6 +2932,1212 @@
             .prestige-pill { font-size: 12px; padding: 7px 16px; }
             .apple-skip-btn { top: 16px; right: 16px; padding: 7px 14px; font-size: 12px; }
         }
+    
+        /* ================================================================
+           REFERANSLARIMIZ (PORTFOLIO / SHOWCASE) STYLES
+           ================================================================ */
+        .ref-section {
+            background: linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 50%, #F1F5F9 100%);
+            position: relative;
+            overflow: hidden;
+            padding: 100px 0;
+        }
+
+        .ref-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1000px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0, 98, 255, 0.07) 0%, rgba(0, 194, 255, 0.03) 50%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .ref-stats-bar {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px;
+            background: var(--white);
+            border: 1px solid var(--slate-200);
+            border-radius: var(--radius-xl);
+            padding: 24px 32px;
+            margin-bottom: 50px;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+            position: relative;
+            z-index: 1;
+        }
+
+        .ref-stat-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            border-right: 1px solid var(--slate-100);
+            padding-right: 16px;
+        }
+
+        .ref-stat-item:last-child {
+            border-right: none;
+            padding-right: 0;
+        }
+
+        .ref-stat-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 14px;
+            background: var(--primary-light);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            flex-shrink: 0;
+            transition: var(--transition);
+        }
+
+        .ref-stat-item:hover .ref-stat-icon {
+            background: var(--primary);
+            color: var(--white);
+            transform: scale(1.08) rotate(5deg);
+        }
+
+        .ref-stat-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .ref-stat-number {
+            font-family: var(--font-display);
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--slate-900);
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        .ref-stat-label {
+            font-size: 13px;
+            color: var(--slate-500);
+            font-weight: 500;
+        }
+
+        /* Filter Controls */
+        
+        /* Empty State for Categories in Production */
+        .ref-empty-notice {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, #FFFFFF 0%, #F8FAFC 100%);
+            border: 2px dashed var(--slate-200);
+            border-radius: var(--radius-xl);
+            padding: 70px 30px;
+            text-align: center;
+            margin: 20px 0;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.03);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .ref-empty-icon {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: var(--primary-light);
+            color: var(--primary);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .ref-empty-notice h4 {
+            font-size: 22px;
+            color: var(--slate-900);
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
+
+        .ref-empty-notice p {
+            font-size: 15px;
+            color: var(--slate-600);
+            max-width: 580px;
+            margin: 0 auto 26px;
+            line-height: 1.6;
+        }
+
+        .ref-empty-actions {
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .ref-filters {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 45px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .ref-filter-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: var(--radius-full);
+            background: var(--white);
+            color: var(--slate-700);
+            border: 1px solid var(--slate-200);
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .ref-filter-btn i {
+            font-size: 14px;
+            color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .ref-filter-btn:hover {
+            color: var(--primary);
+            border-color: rgba(0, 98, 255, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 98, 255, 0.12);
+        }
+
+        .ref-filter-btn.active {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: var(--white);
+            border-color: transparent;
+            box-shadow: 0 8px 24px rgba(0, 98, 255, 0.35);
+            transform: translateY(-2px);
+        }
+
+        .ref-filter-btn.active i {
+            color: var(--white);
+        }
+
+        .ref-filter-count {
+            display: inline-block;
+            background: rgba(0, 0, 0, 0.08);
+            font-size: 11px;
+            padding: 2px 7px;
+            border-radius: var(--radius-full);
+            font-weight: 700;
+        }
+
+        .ref-filter-btn.active .ref-filter-count {
+            background: rgba(255, 255, 255, 0.25);
+            color: var(--white);
+        }
+
+        /* Grid & Cards */
+        .ref-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 32px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .ref-card {
+            background: var(--white);
+            border-radius: var(--radius-xl);
+            border: 1px solid var(--slate-200);
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(15, 23, 42, 0.05);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .ref-card.ref-card-hide {
+            display: none !important;
+        }
+
+        .ref-card.ref-card-animating {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .ref-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(0, 98, 255, 0.35);
+            box-shadow: 0 24px 50px -10px rgba(0, 98, 255, 0.22);
+        }
+
+        .ref-card-media {
+            position: relative;
+            aspect-ratio: 16 / 9;
+            overflow: hidden;
+            background: var(--slate-900);
+            cursor: pointer;
+        }
+
+        .ref-card-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .ref-card:hover .ref-card-media img {
+            transform: scale(1.08);
+        }
+
+        .ref-badge-category {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            background: rgba(7, 15, 38, 0.88);
+            color: var(--white);
+            font-size: 11px;
+            font-weight: 700;
+            padding: 6px 13px;
+            border-radius: var(--radius-full);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            letter-spacing: 0.5px;
+            z-index: 2;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .ref-badge-category i {
+            color: var(--secondary);
+        }
+
+        .ref-badge-quality {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: var(--white);
+            font-size: 11px;
+            font-weight: 700;
+            padding: 6px 13px;
+            border-radius: var(--radius-full);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 2;
+            box-shadow: 0 4px 12px rgba(0, 98, 255, 0.35);
+        }
+
+        .ref-card-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(7, 15, 38, 0.15) 0%, rgba(7, 15, 38, 0.85) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.35s ease;
+            z-index: 1;
+        }
+
+        .ref-card:hover .ref-card-overlay {
+            opacity: 1;
+        }
+
+        .ref-overlay-action {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--white);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            transform: scale(0.8);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .ref-card:hover .ref-overlay-action {
+            transform: scale(1);
+        }
+
+        .ref-overlay-action:hover {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: var(--white);
+            transform: scale(1.12);
+        }
+
+        /* Card Content */
+        .ref-card-body {
+            padding: 26px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .ref-card-client {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.9px;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .ref-card-client i.fa-circle-check {
+            color: var(--secondary);
+            font-size: 13px;
+        }
+
+        .ref-card-title {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--slate-900);
+            margin-bottom: 10px;
+            line-height: 1.35;
+        }
+
+        .ref-card-desc {
+            font-size: 14px;
+            color: var(--slate-600);
+            line-height: 1.65;
+            margin-bottom: 18px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .ref-card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 22px;
+            margin-top: auto;
+        }
+
+        .ref-tag {
+            font-size: 11px;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: var(--radius-sm);
+            background: var(--slate-100);
+            color: var(--slate-600);
+            transition: var(--transition);
+        }
+
+        .ref-card:hover .ref-tag {
+            background: var(--primary-light);
+            color: var(--primary);
+        }
+
+        .ref-card-footer {
+            border-top: 1px solid var(--slate-100);
+            padding-top: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .ref-action-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            flex: 1;
+            padding: 11px 18px;
+            border-radius: var(--radius-md);
+            font-size: 13px;
+            font-weight: 700;
+            background: var(--primary-light);
+            color: var(--primary);
+            border: 1px solid rgba(0, 98, 255, 0.15);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .ref-action-btn:hover {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: var(--white);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(0, 98, 255, 0.28);
+        }
+
+        .ref-quick-btn {
+            width: 42px;
+            height: 42px;
+            border-radius: var(--radius-md);
+            background: var(--slate-100);
+            color: var(--slate-700);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .ref-quick-btn:hover {
+            background: #25D366;
+            color: var(--white);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(37, 211, 102, 0.35);
+        }
+
+        /* Bottom CTA */
+        .ref-cta-box {
+            margin-top: 65px;
+            background: linear-gradient(135deg, var(--dark) 0%, var(--dark-card) 100%);
+            border-radius: var(--radius-xl);
+            padding: 45px 50px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+            box-shadow: 0 25px 60px -10px rgba(7, 15, 38, 0.4);
+            border: 1px solid rgba(0, 194, 255, 0.25);
+            position: relative;
+            z-index: 1;
+        }
+
+        .ref-cta-content {
+            display: flex;
+            align-items: center;
+            gap: 26px;
+        }
+
+        .ref-cta-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 22px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            flex-shrink: 0;
+            box-shadow: 0 10px 25px rgba(0, 98, 255, 0.45);
+        }
+
+        .ref-cta-content h4 {
+            color: var(--white);
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 6px;
+        }
+
+        .ref-cta-content p {
+            color: var(--slate-300);
+            font-size: 15px;
+            margin: 0;
+            max-width: 540px;
+            line-height: 1.6;
+        }
+
+        .ref-cta-actions {
+            display: flex;
+            gap: 16px;
+            flex-shrink: 0;
+        }
+
+        /* ================================================================
+           CUSTOM MODALS FOR REFERENCES (QR, VIDEO, WEB)
+           ================================================================ */
+        .ref-modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(7, 15, 38, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 2100;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .ref-modal-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .ref-modal-box {
+            background: var(--white);
+            border-radius: var(--radius-xl);
+            width: 100%;
+            max-width: 920px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transform: translateY(20px);
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .ref-modal-overlay.active .ref-modal-box {
+            transform: translateY(0);
+        }
+
+        .ref-modal-header {
+            padding: 22px 28px;
+            border-bottom: 1px solid var(--slate-100);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(12px);
+            z-index: 10;
+        }
+
+        .ref-modal-title {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--slate-900);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* QR Menu Modal Specifics */
+        .ref-qr-layout {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 32px;
+            padding: 28px;
+        }
+
+        .ref-phone-frame {
+            background: #111827;
+            border-radius: 40px;
+            padding: 10px;
+            box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.4), inset 0 0 0 2px #374151;
+            position: relative;
+        }
+
+        .ref-phone-screen {
+            background: #FAFAFA;
+            border-radius: 30px;
+            overflow: hidden;
+            height: 480px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .ref-phone-notch {
+            height: 20px;
+            background: #111827;
+            width: 100px;
+            margin: 0 auto;
+            border-bottom-left-radius: 12px;
+            border-bottom-right-radius: 12px;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 20;
+        }
+
+        .ref-sim-menu-header {
+            background: linear-gradient(135deg, #070F26 0%, #0062FF 100%);
+            color: var(--white);
+            padding: 30px 16px 14px;
+            text-align: center;
+        }
+
+        .ref-sim-menu-header h5 {
+            color: var(--white);
+            font-size: 14px;
+            margin-bottom: 2px;
+        }
+
+        .ref-sim-menu-header p {
+            font-size: 10px;
+            color: rgba(255, 255, 255, 0.85);
+            margin: 0;
+        }
+
+        .ref-sim-categories {
+            display: flex;
+            gap: 6px;
+            padding: 8px 10px;
+            background: var(--white);
+            border-bottom: 1px solid var(--slate-100);
+            overflow-x: auto;
+        }
+
+        .ref-sim-cat-btn {
+            font-size: 10px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: var(--radius-full);
+            background: var(--slate-100);
+            color: var(--slate-700);
+            white-space: nowrap;
+            border: none;
+            cursor: pointer;
+        }
+
+        .ref-sim-cat-btn.active {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .ref-sim-items-list {
+            padding: 10px;
+            overflow-y: auto;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .ref-sim-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--white);
+            padding: 8px 10px;
+            border-radius: 12px;
+            border: 1px solid var(--slate-200);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02);
+        }
+
+        .ref-sim-item-img {
+            width: 42px;
+            height: 42px;
+            border-radius: 8px;
+            object-fit: cover;
+            background: var(--slate-200);
+            flex-shrink: 0;
+        }
+
+        .ref-sim-item-details {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .ref-sim-item-title {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--slate-900);
+            line-height: 1.2;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .ref-sim-item-sub {
+            font-size: 10px;
+            color: var(--slate-500);
+            line-height: 1.2;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .ref-sim-item-price {
+            font-size: 12px;
+            font-weight: 800;
+            color: var(--primary);
+            white-space: nowrap;
+        }
+
+        .ref-phone-bottom-bar {
+            padding: 10px 12px;
+            background: var(--white);
+            border-top: 1px solid var(--slate-100);
+            display: flex;
+            gap: 8px;
+        }
+
+        .ref-phone-action-btn {
+            flex: 1;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 6px 8px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+        }
+
+        .ref-phone-action-btn.call {
+            background: var(--slate-100);
+            color: var(--slate-700);
+        }
+
+        .ref-phone-action-btn.wa {
+            background: #25D366;
+            color: var(--white);
+        }
+
+        .ref-qr-details-side {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .ref-qr-display-card {
+            background: var(--slate-50);
+            border: 2px dashed rgba(0, 98, 255, 0.25);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .ref-qr-svg-wrap {
+            width: 175px;
+            height: 175px;
+            margin: 0 auto 16px;
+            background: var(--white);
+            padding: 12px;
+            border-radius: 18px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ref-qr-laser {
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #00C2FF, #0062FF, transparent);
+            box-shadow: 0 0 12px #00C2FF;
+            animation: qrScanLaser 2.2s ease-in-out infinite alternate;
+            z-index: 5;
+        }
+
+        @keyframes qrScanLaser {
+            0% { top: 8%; }
+            100% { top: 92%; }
+        }
+
+        .ref-qr-link-box {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--white);
+            border: 1px solid var(--slate-200);
+            border-radius: var(--radius-md);
+            padding: 8px 12px;
+            margin-bottom: 18px;
+        }
+
+        .ref-qr-link-input {
+            border: none;
+            outline: none;
+            background: transparent;
+            font-size: 13px;
+            color: var(--slate-700);
+            flex: 1;
+            font-family: monospace;
+        }
+
+        .ref-qr-copy-btn {
+            background: var(--primary-light);
+            color: var(--primary);
+            border: none;
+            padding: 7px 14px;
+            border-radius: var(--radius-sm);
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .ref-qr-copy-btn:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .ref-qr-info-note {
+            background: rgba(0, 98, 255, 0.05);
+            border-left: 4px solid var(--primary);
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 13px;
+            color: var(--slate-700);
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        /* ================================================================
+           9:16 DİKEY 4K VİDEO MODAL STİLLERİ (REELS / SHORTS FORMAT)
+           ================================================================ */
+        .ref-video-box {
+            background: #070F26;
+            color: var(--white);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            max-width: 840px;
+            width: 100%;
+            border: 1px solid rgba(0, 194, 255, 0.3);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.75), 0 0 50px rgba(0, 98, 255, 0.2);
+            max-height: 92vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .ref-video-body-layout {
+            display: grid;
+            grid-template-columns: 380px 1fr;
+            background: #070F26;
+            overflow: hidden;
+        }
+
+        /* 9:16 Dikey Ekran Player */
+        .ref-video-screen {
+            position: relative;
+            aspect-ratio: 9 / 16;
+            background: #000000;
+            width: 100%;
+            max-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.9);
+        }
+
+        .ref-video-element {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            aspect-ratio: 9 / 16;
+            background: #000000;
+        }
+
+        .ref-video-placeholder-ui {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 24px;
+            transition: opacity 0.3s ease;
+        }
+
+        .ref-video-placeholder-ui::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(7, 15, 38, 0.65);
+            backdrop-filter: blur(4px);
+        }
+
+        .ref-video-play-huge {
+            position: relative;
+            z-index: 2;
+            width: 76px;
+            height: 76px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0, 194, 255, 0.5);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            margin-bottom: 14px;
+        }
+
+        .ref-video-play-huge:hover {
+            transform: scale(1.12);
+            box-shadow: 0 15px 40px rgba(0, 194, 255, 0.75);
+        }
+
+        /* 9:16 Video Info & Details Side Panel */
+        .ref-video-info-panel {
+            padding: 28px 30px;
+            background: #0E1A3D;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow-y: auto;
+            border-left: 1px solid rgba(255, 255, 255, 0.08);
+            position: relative;
+        }
+
+        .ref-video-panel-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 18px;
+        }
+
+        .ref-video-badge-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .ref-badge-916 {
+            background: rgba(0, 194, 255, 0.15);
+            border: 1px solid rgba(0, 194, 255, 0.4);
+            color: #00C2FF;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 5px 12px;
+            border-radius: var(--radius-full);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            letter-spacing: 0.5px;
+        }
+
+        .ref-video-panel-title {
+            color: var(--white);
+            font-size: 20px;
+            font-weight: 800;
+            line-height: 1.35;
+            margin-bottom: 8px;
+        }
+
+        .ref-video-panel-client {
+            color: var(--secondary);
+            font-size: 13.5px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 22px;
+        }
+
+        .ref-video-specs-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .ref-video-spec-card {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: var(--radius-md);
+            padding: 12px 14px;
+            transition: var(--transition);
+        }
+
+        .ref-video-spec-card:hover {
+            background: rgba(255, 255, 255, 0.07);
+            border-color: rgba(0, 194, 255, 0.3);
+        }
+
+        .ref-video-spec-card h6 {
+            color: var(--secondary);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .ref-video-spec-card p {
+            color: var(--white);
+            font-size: 13px;
+            margin: 0;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        .ref-video-panel-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: auto;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        /* Responsive Breakpoints for 9:16 Video Player */
+        @media (max-width: 820px) {
+            .ref-video-box {
+                max-width: 440px;
+                max-height: 94vh;
+            }
+
+            .ref-video-body-layout {
+                grid-template-columns: 1fr;
+                max-height: 92vh;
+                overflow-y: auto;
+            }
+
+            .ref-video-screen {
+                max-height: 65vh;
+            }
+
+            .ref-video-info-panel {
+                border-left: none;
+                border-top: 1px solid rgba(255, 255, 255, 0.08);
+                padding: 20px;
+            }
+
+            .ref-video-specs-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+        }
+
+        /* Web Preview Modal */
+        .ref-web-browser {
+            background: #1E293B;
+            border-top-left-radius: var(--radius-xl);
+            border-top-right-radius: var(--radius-xl);
+            padding: 14px 24px;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .ref-browser-dots {
+            display: flex;
+            gap: 7px;
+        }
+
+        .ref-browser-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .ref-browser-dot.red { background: #EF4444; }
+        .ref-browser-dot.yellow { background: #F59E0B; }
+        .ref-browser-dot.green { background: #10B981; }
+
+        .ref-browser-bar {
+            flex: 1;
+            background: #0F172A;
+            border-radius: var(--radius-full);
+            padding: 7px 18px;
+            font-size: 12px;
+            color: var(--slate-300);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: monospace;
+        }
+
+        .ref-web-body {
+            padding: 28px 32px;
+        }
+
+        .ref-web-preview-box {
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            border: 1px solid var(--slate-200);
+            max-height: 420px;
+            overflow-y: auto;
+            margin-bottom: 24px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .ref-web-preview-box img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .ref-web-details-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 28px;
+            align-items: center;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 1024px) {
+            .ref-stats-bar {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .ref-qr-layout {
+                grid-template-columns: 1fr;
+            }
+            .ref-phone-frame {
+                max-width: 320px;
+                margin: 0 auto;
+            }
+            .ref-video-details-strip {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .ref-stats-bar {
+                grid-template-columns: 1fr;
+                gap: 16px;
+                padding: 20px;
+            }
+            .ref-stat-item {
+                border-right: none;
+                border-bottom: 1px solid var(--slate-100);
+                padding-bottom: 14px;
+            }
+            .ref-stat-item:last-child {
+                border-bottom: none;
+                padding-bottom: 0;
+            }
+            .ref-grid {
+                grid-template-columns: 1fr;
+            }
+            .ref-cta-box {
+                flex-direction: column;
+                text-align: center;
+                padding: 30px 20px;
+            }
+            .ref-cta-content {
+                flex-direction: column;
+            }
+            .ref-cta-actions {
+                flex-direction: column;
+                width: 100%;
+            }
+            .ref-cta-actions .btn {
+                width: 100%;
+            }
+            .ref-web-details-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -3100,6 +4306,9 @@
                     </li>
 
                     <li class="nav-item">
+                        <a href="#referanslar" class="nav-link">Referanslarımız</a>
+                    </li>
+                    <li class="nav-item">
                         <a href="#sss" class="nav-link">S.S.S.</a>
                     </li>
                     <li class="nav-item">
@@ -3160,6 +4369,9 @@
                 </div>
             </li>
 
+            <li class="mobile-nav-item">
+                <a href="#referanslar" class="mobile-nav-link mob-link">Referanslarımız</a>
+            </li>
             <li class="mobile-nav-item">
                 <a href="#sss" class="mobile-nav-link mob-link">S.S.S.</a>
             </li>
@@ -3710,6 +4922,448 @@
     </section>
 
     <!-- ================================================================
+         REFERANSLARIMIZ (PORTFOLIO / SHOWCASE SECTION)
+         ================================================================ -->
+    <section id="referanslar" class="section ref-section">
+        <div class="container">
+            <!-- Section Header -->
+            <div class="section-header">
+                <span class="section-tag"><i class="fa-solid fa-sparkles"></i> Seçkin Referans Portföyümüz</span>
+                <h2 class="section-title">İmza Attığımız <span class="text-gradient">Referanslarımız</span></h2>
+                <p class="section-desc">
+                    Yeni nesil restoran &amp; kafe QR menülerinden kurumsal web platformlarına, 4K sinematik drone emlak çekimlerinden prestijli mekan ve ürün içerik çekimlerine kadar başarıyla tamamlanan projelerimiz.
+                </p>
+            </div>
+
+            <!-- Agency Trust & Metrics Bar -->
+            <div class="ref-stats-bar">
+                <div class="ref-stat-item">
+                    <div class="ref-stat-icon"><i class="fa-solid fa-award"></i></div>
+                    <div class="ref-stat-info">
+                        <span class="ref-stat-number">150+</span>
+                        <span class="ref-stat-label">Tamamlanan Proje</span>
+                    </div>
+                </div>
+                <div class="ref-stat-item">
+                    <div class="ref-stat-icon"><i class="fa-solid fa-qrcode"></i></div>
+                    <div class="ref-stat-info">
+                        <span class="ref-stat-number">45+</span>
+                        <span class="ref-stat-label">Dijital QR Menü</span>
+                    </div>
+                </div>
+                <div class="ref-stat-item">
+                    <div class="ref-stat-icon"><i class="fa-solid fa-laptop-code"></i></div>
+                    <div class="ref-stat-info">
+                        <span class="ref-stat-number">60+</span>
+                        <span class="ref-stat-label">Web Sitesi &amp; Yazılım</span>
+                    </div>
+                </div>
+                <div class="ref-stat-item">
+                    <div class="ref-stat-icon"><i class="fa-solid fa-clapperboard"></i></div>
+                    <div class="ref-stat-info">
+                        <span class="ref-stat-number">120+</span>
+                        <span class="ref-stat-label">4K İçerik Çekimleri</span>
+                    </div>
+                </div>
+                <div class="ref-stat-item">
+                    <div class="ref-stat-icon"><i class="fa-solid fa-heart-pulse"></i></div>
+                    <div class="ref-stat-info">
+                        <span class="ref-stat-number">%100</span>
+                        <span class="ref-stat-label">Müşteri Memnuniyeti</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Filter Controls -->
+            <div class="ref-filters">
+                <button type="button" class="ref-filter-btn active" data-filter="all" onclick="filterReferanslar('all', this)">
+                    <i class="fa-solid fa-layer-group"></i> Tümü <span class="ref-filter-count">9</span>
+                </button>
+                <button type="button" class="ref-filter-btn" data-filter="emlak" onclick="filterReferanslar('emlak', this)">
+                    <i class="fa-solid fa-building"></i> Emlak Çekimleri <span class="ref-filter-count">2</span>
+                </button>
+                <button type="button" class="ref-filter-btn" data-filter="icerik" onclick="filterReferanslar('icerik', this)">
+                    <i class="fa-solid fa-clapperboard"></i> İçerik Çekimleri <span class="ref-filter-count">4</span>
+                </button>
+                <button type="button" class="ref-filter-btn" data-filter="mekan" onclick="filterReferanslar('mekan', this)">
+                    <i class="fa-solid fa-utensils"></i> Mekan Çekimleri <span class="ref-filter-count">1</span>
+                </button>
+                <button type="button" class="ref-filter-btn" data-filter="menu" onclick="filterReferanslar('menu', this)">
+                    <i class="fa-solid fa-qrcode"></i> QR Menüler <span class="ref-filter-count">3</span>
+                </button>
+                <button type="button" class="ref-filter-btn" data-filter="urun" onclick="filterReferanslar('urun', this)">
+                    <i class="fa-solid fa-box-open"></i> Ürün Çekimleri <span class="ref-filter-count">1</span>
+                </button>
+                <button type="button" class="ref-filter-btn" data-filter="web" onclick="filterReferanslar('web', this)">
+                    <i class="fa-solid fa-laptop-code"></i> Web Siteleri <span class="ref-filter-count">2</span>
+                </button>
+            </div>
+
+            <!-- Projects Grid -->
+            <div class="ref-grid" id="refGrid">
+
+                <!-- 1. QR MENÜ: Luna Bistro -->
+                <article class="ref-card" data-category="menu" data-ref-id="luna-bistro">
+                    <div class="ref-card-media" onclick="openRefModal('luna-bistro')">
+                        <img src="assets/images/referanslar/ref-menu-1.jpg" alt="Luna Modern Bistro QR Menü" loading="lazy">
+                        <span class="ref-badge-category"><i class="fa-solid fa-qrcode"></i> QR Menü</span>
+                        <span class="ref-badge-quality"><i class="fa-solid fa-bolt"></i> Akıllı Menü</span>
+                        <div class="ref-card-overlay">
+                            <div class="ref-overlay-action">
+                                <i class="fa-solid fa-qrcode"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ref-card-body">
+                        <div class="ref-card-client">
+                            <i class="fa-solid fa-circle-check"></i> Luna Bistro &amp; Lounge • Gaziantep
+                        </div>
+                        <h3 class="ref-card-title">Luna Modern Bistro &amp; Lounge QR Menü</h3>
+                        <p class="ref-card-desc">
+                            Lüks bistro ve kokteyl lounge konsepti için tasarladığımız çok dilli, profesyonel fotoğraflı ve alerjen filtreli yeni nesil temassız QR menü sistemi.
+                        </p>
+                        <div class="ref-card-tags">
+                            <span class="ref-tag">#QR Menü</span>
+                            <span class="ref-tag">#Bistro Lounge</span>
+                            <span class="ref-tag">#Çok Dilli</span>
+                            <span class="ref-tag">#Hızlı Sipariş</span>
+                        </div>
+                        <div class="ref-card-footer">
+                            <button type="button" class="ref-action-btn" onclick="openRefModal('luna-bistro')">
+                                <i class="fa-solid fa-qrcode"></i> QR Menüyü İncele
+                            </button>
+                            <a href="https://wa.me/905533650396?text=Merhaba,%20Luna%20Bistro%20benzeri%20QR%20Menü%20hakkında%20bilgi%20almak%20istiyorum" target="_blank" rel="noopener noreferrer" class="ref-quick-btn" title="WhatsApp ile Bilgi Al">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 2. QR MENÜ: The Daily Brew -->
+                <article class="ref-card" data-category="menu" data-ref-id="daily-brew">
+                    <div class="ref-card-media" onclick="openRefModal('daily-brew')">
+                        <img src="assets/images/referanslar/ref-menu-2.jpg" alt="The Daily Brew QR Menü" loading="lazy">
+                        <span class="ref-badge-category"><i class="fa-solid fa-qrcode"></i> QR Menü</span>
+                        <span class="ref-badge-quality"><i class="fa-solid fa-wand-magic-sparkles"></i> 3. Dalga Kafe</span>
+                        <div class="ref-card-overlay">
+                            <div class="ref-overlay-action">
+                                <i class="fa-solid fa-qrcode"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ref-card-body">
+                        <div class="ref-card-client">
+                            <i class="fa-solid fa-circle-check"></i> The Daily Brew • Kafe &amp; Bakery
+                        </div>
+                        <h3 class="ref-card-title">The Daily Brew Specialty Coffee QR Menü</h3>
+                        <p class="ref-card-desc">
+                            Nitelikli kahve çekirdekleri, günlük artisan unlu mamuller ve taze lezzetler için estetik, hızlı açılan ve anlık stok güncellenebilen QR menü.
+                        </p>
+                        <div class="ref-card-tags">
+                            <span class="ref-tag">#QR Menü</span>
+                            <span class="ref-tag">#Kafe Menüsü</span>
+                            <span class="ref-tag">#Kahve Çekirdekleri</span>
+                            <span class="ref-tag">#Artisan Bakery</span>
+                        </div>
+                        <div class="ref-card-footer">
+                            <button type="button" class="ref-action-btn" onclick="openRefModal('daily-brew')">
+                                <i class="fa-solid fa-qrcode"></i> QR Menüyü İncele
+                            </button>
+                            <a href="https://wa.me/905533650396?text=Merhaba,%20Kafe%20QR%20Menü%20çözümünüz%20için%20yazıyorum" target="_blank" rel="noopener noreferrer" class="ref-quick-btn" title="WhatsApp ile Bilgi Al">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 3. QR MENÜ: Balkon Kafe -->
+                <article class="ref-card" data-category="menu" data-ref-id="balkon-kafe">
+                    <div class="ref-card-media" onclick="openRefModal('balkon-kafe')">
+                        <img src="assets/images/referanslar/ref-menu-3.jpg" alt="Balkon Kafe &amp; Restaurant QR Menü" loading="lazy">
+                        <span class="ref-badge-category"><i class="fa-solid fa-qrcode"></i> QR Menü</span>
+                        <span class="ref-badge-quality"><i class="fa-solid fa-bolt"></i> Akıllı Menü</span>
+                        <div class="ref-card-overlay">
+                            <div class="ref-overlay-action">
+                                <i class="fa-solid fa-qrcode"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ref-card-body">
+                        <div class="ref-card-client">
+                            <i class="fa-solid fa-circle-check"></i> Balkon Kafe &amp; Restaurant • Gaziantep
+                        </div>
+                        <h3 class="ref-card-title">Balkon Kafe &amp; Restaurant QR Menü Sistemi</h3>
+                        <p class="ref-card-desc">
+                            Geniş terası ve eşsiz manzarasıyla öne çıkan Balkon Kafe için hazırladığımız çok dilli, hızlı sipariş altyapılı ve görsel zenginliğe sahip yeni nesil dijital QR menü.
+                        </p>
+                        <div class="ref-card-tags">
+                            <span class="ref-tag">#QR Menü</span>
+                            <span class="ref-tag">#Balkon Kafe</span>
+                            <span class="ref-tag">#Teras Restoran</span>
+                            <span class="ref-tag">#Hızlı Sipariş</span>
+                        </div>
+                        <div class="ref-card-footer">
+                            <button type="button" class="ref-action-btn" onclick="openRefModal('balkon-kafe')">
+                                <i class="fa-solid fa-qrcode"></i> QR Menüyü İncele
+                            </button>
+                            <a href="https://wa.me/905533650396?text=Merhaba,%20Balkon%20Kafe%20benzeri%20QR%20Menü%20hakkında%20bilgi%20almak%20istiyorum" target="_blank" rel="noopener noreferrer" class="ref-quick-btn" title="WhatsApp ile Bilgi Al">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 4. WEB SİTESİ: Mavi Tik Medya Ajansı -->
+                <article class="ref-card" data-category="web" data-ref-id="mavitik-web">
+                    <div class="ref-card-media" onclick="openRefModal('mavitik-web')">
+                        <img src="assets/images/referanslar/ref-web-3.jpg" alt="Mavi Tik Medya Ajansı Resmi Web Platformu" loading="lazy">
+                        <span class="ref-badge-category"><i class="fa-solid fa-laptop-code"></i> Web Tasarım</span>
+                        <span class="ref-badge-quality"><i class="fa-solid fa-star"></i> Next-Gen UI</span>
+                        <div class="ref-card-overlay">
+                            <div class="ref-overlay-action">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ref-card-body">
+                        <div class="ref-card-client">
+                            <i class="fa-solid fa-circle-check"></i> Mavi Tik Medya Ajansı • Kurumsal &amp; Dijital
+                        </div>
+                        <h3 class="ref-card-title">Mavi Tik Medya Ajansı Resmi Web Platformu</h3>
+                        <p class="ref-card-desc">
+                            Ajansımızın dinamik vizyonunu yansıtan modern cam-morfik arayüzü, 3D sinematik intro animasyonu, yüksek hızlı CDN altyapısı ve kurumsal kimlik vitrini.
+                        </p>
+                        <div class="ref-card-tags">
+                            <span class="ref-tag">#Web Tasarım</span>
+                            <span class="ref-tag">#Ajans Sitesi</span>
+                            <span class="ref-tag">#Glassmorphism</span>
+                            <span class="ref-tag">#SEO %100</span>
+                        </div>
+                        <div class="ref-card-footer">
+                            <button type="button" class="ref-action-btn" onclick="openRefModal('mavitik-web')">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i> Siteyi İncele
+                            </button>
+                            <a href="https://wa.me/905533650396?text=Merhaba,%20Mavi%20Tik%20Medya%20tarzı%20özel%20web%20sitesi%20yaptırmak%20istiyorum" target="_blank" rel="noopener noreferrer" class="ref-quick-btn" title="WhatsApp ile Bilgi Al">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 5. WEB SİTESİ: Krextech -->
+                <article class="ref-card" data-category="web" data-ref-id="krextech">
+                    <div class="ref-card-media" onclick="openRefModal('krextech')">
+                        <img src="assets/images/referanslar/ref-web-4.jpg" alt="Krextech Yazılım &amp; Yapay Zeka Web Sitesi" loading="lazy">
+                        <span class="ref-badge-category"><i class="fa-solid fa-laptop-code"></i> Web Yazılım</span>
+                        <span class="ref-badge-quality"><i class="fa-solid fa-shield-halved"></i> SaaS Platform</span>
+                        <div class="ref-card-overlay">
+                            <div class="ref-overlay-action">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ref-card-body">
+                        <div class="ref-card-client">
+                            <i class="fa-solid fa-circle-check"></i> Krextech Bilişim &amp; Teknoloji A.Ş.
+                        </div>
+                        <h3 class="ref-card-title">Krextech Yazılım &amp; Yapay Zeka Çözümleri</h3>
+                        <p class="ref-card-desc">
+                            Yapay zeka modelleri, bulut SaaS altyapıları ve kurumsal bilişim operasyonlarını tanıtan, uluslararası standartlarda kurumsal teknoloji ve yazılım platformu.
+                        </p>
+                        <div class="ref-card-tags">
+                            <span class="ref-tag">#Web Yazılım</span>
+                            <span class="ref-tag">#Krextech</span>
+                            <span class="ref-tag">#Yapay Zeka</span>
+                            <span class="ref-tag">#SaaS UI</span>
+                        </div>
+                        <div class="ref-card-footer">
+                            <button type="button" class="ref-action-btn" onclick="openRefModal('krextech')">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i> Siteyi İncele
+                            </button>
+                            <a href="https://wa.me/905533650396?text=Merhaba,%20Krextech%20tarzı%20yazılım/SaaS%20web%20sitesi%20hakkında%20bilgi%20almak%20istiyorum" target="_blank" rel="noopener noreferrer" class="ref-quick-btn" title="WhatsApp ile Bilgi Al">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 6. EMLAK ÇEKİMİ #1: Sinematik 4K Emlak Tanıtımı -->
+                <article class="ref-card" data-category="emlak icerik" data-ref-id="emlak-cekimi-1">
+                    <div class="ref-card-media" onclick="openRefModal('emlak-cekimi-1')">
+                        <img src="assets/images/referanslar/ref-emlak-1.jpg" alt="Sinematik 4K Emlak Tanıtım Filmi" loading="lazy">
+                        <span class="ref-badge-category"><i class="fa-solid fa-building"></i> Emlak Çekimi</span>
+                        <span class="ref-badge-quality"><i class="fa-solid fa-mobile-screen"></i> 9:16 Dikey 4K</span>
+                        <div class="ref-card-overlay">
+                            <div class="ref-overlay-action">
+                                <i class="fa-solid fa-play"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ref-card-body">
+                        <div class="ref-card-client">
+                            <i class="fa-solid fa-circle-check"></i> Mavi Tik Medya Ajansı • Emlak Prodüksiyonu
+                        </div>
+                        <h3 class="ref-card-title">Sinematik 4K Emlak &amp; Mimari Tanıtım Filmi</h3>
+                        <p class="ref-card-desc">
+                            Geniş açılı drone uçuşları, iç mekan akıcı gimbal geçişleri ve profesyonel mimari renk kurgusuyla hazırlanan 4K emlak tanıtım filmi.
+                        </p>
+                        <div class="ref-card-tags">
+                            <span class="ref-tag">#EmlakÇekimi</span>
+                            <span class="ref-tag">#4KDrone</span>
+                            <span class="ref-tag">#MimariÇekim</span>
+                            <span class="ref-tag">#TanıtımFilmi</span>
+                        </div>
+                        <div class="ref-card-footer">
+                            <button type="button" class="ref-action-btn" onclick="openRefModal('emlak-cekimi-1')">
+                                <i class="fa-solid fa-play"></i> Videoyu İzle (4K)
+                            </button>
+                            <a href="https://wa.me/905533650396?text=Merhaba,%20Emlak%20ve%20Villa%20Drone%20Çekimi%20hakkında%20bilgi%20almak%20istiyorum" target="_blank" rel="noopener noreferrer" class="ref-quick-btn" title="WhatsApp ile Bilgi Al">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 7. EMLAK ÇEKİMİ #2: Lüks Yaşam & Rezidans Tanıtımı -->
+                <article class="ref-card" data-category="emlak icerik" data-ref-id="emlak-cekimi-2">
+                    <div class="ref-card-media" onclick="openRefModal('emlak-cekimi-2')">
+                        <img src="assets/images/referanslar/ref-emlak-2.jpg" alt="Lüks Yaşam &amp; Rezidans Tanıtım Filmi" loading="lazy">
+                        <span class="ref-badge-category"><i class="fa-solid fa-building"></i> Emlak Çekimi</span>
+                        <span class="ref-badge-quality"><i class="fa-solid fa-mobile-screen"></i> 9:16 Dikey 4K</span>
+                        <div class="ref-card-overlay">
+                            <div class="ref-overlay-action">
+                                <i class="fa-solid fa-play"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ref-card-body">
+                        <div class="ref-card-client">
+                            <i class="fa-solid fa-circle-check"></i> Mavi Tik Medya Ajansı • Emlak Prodüksiyonu
+                        </div>
+                        <h3 class="ref-card-title">Lüks Yaşam &amp; Rezidans Tanıtım Filmi</h3>
+                        <p class="ref-card-desc">
+                            Prestijli konut ve mimari alanların estetiğini, iç mekan aydınlatmasını ve yaşam standardını ortaya koyan 4K sinematik prodüksiyon.
+                        </p>
+                        <div class="ref-card-tags">
+                            <span class="ref-tag">#EmlakÇekimi</span>
+                            <span class="ref-tag">#Rezidans</span>
+                            <span class="ref-tag">#SinematikKamera</span>
+                            <span class="ref-tag">#Gayrimenkul</span>
+                        </div>
+                        <div class="ref-card-footer">
+                            <button type="button" class="ref-action-btn" onclick="openRefModal('emlak-cekimi-2')">
+                                <i class="fa-solid fa-play"></i> Videoyu İzle (4K)
+                            </button>
+                            <a href="https://wa.me/905533650396?text=Merhaba,%20Rezidans/Gayrimenkul%20Tanıtım%20Filmi%20hakkında%20bilgi%20almak%20istiyorum" target="_blank" rel="noopener noreferrer" class="ref-quick-btn" title="WhatsApp ile Bilgi Al">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 8. MEKAN ÇEKİMİ: Restoran & Kafe Atmosfer Çekimi -->
+                <article class="ref-card" data-category="mekan icerik" data-ref-id="mekan-cekimi-1">
+                    <div class="ref-card-media" onclick="openRefModal('mekan-cekimi-1')">
+                        <img src="assets/images/referanslar/ref-mekan-1.jpg" alt="Restoran &amp; Kafe Mekan Çekimi" loading="lazy">
+                        <span class="ref-badge-category"><i class="fa-solid fa-utensils"></i> Mekan Çekimi</span>
+                        <span class="ref-badge-quality"><i class="fa-solid fa-mobile-screen"></i> 9:16 Dikey Reels</span>
+                        <div class="ref-card-overlay">
+                            <div class="ref-overlay-action">
+                                <i class="fa-solid fa-play"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ref-card-body">
+                        <div class="ref-card-client">
+                            <i class="fa-solid fa-circle-check"></i> Mavi Tik Medya Ajansı • Mekan Çekimleri
+                        </div>
+                        <h3 class="ref-card-title">Restoran &amp; Kafe Atmosfer Mekan Çekimi</h3>
+                        <p class="ref-card-desc">
+                            Mekanın enerjisini, lezzet sunumlarını ve estetik mimari detaylarını sosyal medya ve kurumsal tanıtım için öne çıkaran 4K dinamik video prodüksiyonu.
+                        </p>
+                        <div class="ref-card-tags">
+                            <span class="ref-tag">#MekanÇekimi</span>
+                            <span class="ref-tag">#RestoranTanıtımı</span>
+                            <span class="ref-tag">#ReelsKurgu</span>
+                            <span class="ref-tag">#SosyalMedya</span>
+                        </div>
+                        <div class="ref-card-footer">
+                            <button type="button" class="ref-action-btn" onclick="openRefModal('mekan-cekimi-1')">
+                                <i class="fa-solid fa-play"></i> Videoyu İzle (4K)
+                            </button>
+                            <a href="https://wa.me/905533650396?text=Merhaba,%20Mekan%20Çekimi%20ve%20Reels%20üretimi%20hakkında%20bilgi%20almak%20istiyorum" target="_blank" rel="noopener noreferrer" class="ref-quick-btn" title="WhatsApp ile Bilgi Al">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 9. ÜRÜN ÇEKİMİ: Profesyonel Stüdyo & Makro Ürün Çekimi -->
+                <article class="ref-card" data-category="urun icerik" data-ref-id="urun-cekimi-1">
+                    <div class="ref-card-media" onclick="openRefModal('urun-cekimi-1')">
+                        <img src="assets/images/referanslar/ref-urun-1.jpg" alt="Özel Tasarım Nargile &amp; Ürün Çekimi" loading="lazy">
+                        <span class="ref-badge-category"><i class="fa-solid fa-box-open"></i> Ürün Çekimi</span>
+                        <span class="ref-badge-quality"><i class="fa-solid fa-mobile-screen"></i> 9:16 Dikey Ürün</span>
+                        <div class="ref-card-overlay">
+                            <div class="ref-overlay-action">
+                                <i class="fa-solid fa-play"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ref-card-body">
+                        <div class="ref-card-client">
+                            <i class="fa-solid fa-circle-check"></i> Mavi Tik Medya Ajansı • Ürün Prodüksiyonu
+                        </div>
+                        <h3 class="ref-card-title">Özel Tasarım Nargile &amp; Ürün Çekimi</h3>
+                        <p class="ref-card-desc">
+                            Özel stüdyo ışık kurguları, duman efektleri ve dinamik makro detaylarla gerçekleştirilen 9:16 dikey profesyonel nargile ve ürün tanıtım prodüksiyonu.
+                        </p>
+                        <div class="ref-card-tags">
+                            <span class="ref-tag">#ÜrünÇekimi</span>
+                            <span class="ref-tag">#NargileÇekimi</span>
+                            <span class="ref-tag">#9:16Reels</span>
+                            <span class="ref-tag">#StüdyoProdüksiyon</span>
+                        </div>
+                        <div class="ref-card-footer">
+                            <button type="button" class="ref-action-btn" onclick="openRefModal('urun-cekimi-1')">
+                                <i class="fa-solid fa-play"></i> Videoyu İzle (4K)
+                            </button>
+                            <a href="https://wa.me/905533650396?text=Merhaba,%20Nargile%20ve%20Ürün%20Çekimi%20hakkında%20bilgi%20almak%20istiyorum" target="_blank" rel="noopener noreferrer" class="ref-quick-btn" title="WhatsApp ile Bilgi Al">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+
+            <!-- Bottom CTA Box -->
+            <div class="ref-cta-box">
+                <div class="ref-cta-content">
+                    <div class="ref-cta-icon">
+                        <i class="fa-solid fa-rocket"></i>
+                    </div>
+                    <div>
+                        <h4>Sizin İşletmeniz İçin de Bir Başarı Hikayesi Yazalım</h4>
+                        <p>
+                            İster yeni nesil bir QR menü, ister modern bir web sitesi veya 4K profesyonel emlak &amp; mekan çekimi... Markanızı dijitalde bir adım öne taşımaya hemen başlayalım.
+                        </p>
+                    </div>
+                </div>
+                <div class="ref-cta-actions">
+                    <a href="#iletisim" class="btn btn-primary">
+                        <i class="fa-solid fa-paper-plane"></i> Teklif Alın
+                    </a>
+                    <a href="https://wa.me/905533650396?text=Merhaba,%20yeni%20bir%20proje%20hakkında%20görüşmek%20istiyorum" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp">
+                        <i class="fa-brands fa-whatsapp"></i> WhatsApp'tan Sorun
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ================================================================
          SIKÇA SORULAN SORULAR (OFFICIAL ASSET: sss.png)
          ================================================================ -->
     <section id="sss" class="section">
@@ -4044,6 +5698,7 @@
                         <li><a href="#hakkimizda"><i class="fa-solid fa-angle-right"></i> Hakkımızda</a></li>
                         <li><a href="#hikayemiz"><i class="fa-solid fa-angle-right"></i> Hikayemiz</a></li>
                         <li><a href="#nasil-calisiyoruz"><i class="fa-solid fa-angle-right"></i> Nasıl Çalışıyoruz?</a></li>
+                        <li><a href="#referanslar"><i class="fa-solid fa-angle-right"></i> Referanslarımız</a></li>
                         <li><a href="#sss"><i class="fa-solid fa-angle-right"></i> Sıkça Sorulan Sorular</a></li>
                     </ul>
                 </div>
@@ -4172,6 +5827,257 @@
     <!-- ================================================================
          JAVASCRIPT LOGIC
          ================================================================ -->
+    
+    <!-- ================================================================
+         REFERANSLAR - QR MENÜ İNTERAKTİF POPUP MODAL
+         ================================================================ -->
+    <div id="refQrModal" class="ref-modal-overlay" onclick="handleRefOverlayClick(event, 'refQrModal')">
+        <div class="ref-modal-box">
+            <div class="ref-modal-header">
+                <div class="ref-modal-title">
+                    <i class="fa-solid fa-qrcode text-gradient"></i>
+                    <span id="qrModalHeadingTitle">Luna Modern Bistro &amp; Lounge</span>
+                </div>
+                <button type="button" class="modal-close-btn" onclick="closeRefModal('refQrModal')" aria-label="Kapat">&times;</button>
+            </div>
+            <div class="ref-qr-layout">
+                <!-- Sol: İnteraktif Akıllı Telefon Mockup Menü Simülatörü -->
+                <div class="ref-phone-frame">
+                    <div class="ref-phone-notch"></div>
+                    <div class="ref-phone-screen">
+                        <div class="ref-sim-menu-header">
+                            <h5 id="simHeaderTitle">Luna Modern Bistro</h5>
+                            <p id="simHeaderSub">Şefin Özel Seçimleri &amp; Kokteyller • ⭐ 4.9</p>
+                        </div>
+                        <div class="ref-sim-categories">
+                            <button type="button" class="ref-sim-cat-btn active">Başlangıçlar</button>
+                            <button type="button" class="ref-sim-cat-btn">Ana Yemekler</button>
+                            <button type="button" class="ref-sim-cat-btn">İçecekler</button>
+                            <button type="button" class="ref-sim-cat-btn">Tatlılar</button>
+                        </div>
+                        <div class="ref-sim-items-list" id="simItemsContainer">
+                            <!-- Simüle edilmiş menü yemekleri JS ile dolar -->
+                        </div>
+                        <div class="ref-phone-bottom-bar">
+                            <button type="button" class="ref-phone-action-btn call" onclick="alert('Garson çağırma talebiniz masanıza iletildi (Demo Simülasyonu).')">
+                                <i class="fa-solid fa-bell"></i> Garson Çağır
+                            </button>
+                            <a id="simPhoneWaBtn" href="https://wa.me/905533650396" target="_blank" class="ref-phone-action-btn wa">
+                                <i class="fa-brands fa-whatsapp"></i> Masaya Sipariş
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sağ: QR Kod & Canlı Bağlantı Detayları -->
+                <div class="ref-qr-details-side">
+                    <div class="ref-qr-display-card">
+                        <div class="ref-qr-svg-wrap">
+                            <div class="ref-qr-laser"></div>
+                            <!-- Dinamik SVG QR Kod (Ortasında Mavi Tik Emblemi) -->
+                            <svg id="qrSvgElement" viewBox="0 0 100 100" width="150" height="150">
+                                <rect width="100" height="100" fill="#FFFFFF"/>
+                                <!-- QR Corner 1 -->
+                                <rect x="5" y="5" width="28" height="28" rx="4" fill="#070F26"/>
+                                <rect x="9" y="9" width="20" height="20" rx="2" fill="#FFFFFF"/>
+                                <rect x="13" y="13" width="12" height="12" rx="2" fill="#0062FF"/>
+                                <!-- QR Corner 2 -->
+                                <rect x="67" y="5" width="28" height="28" rx="4" fill="#070F26"/>
+                                <rect x="71" y="9" width="20" height="20" rx="2" fill="#FFFFFF"/>
+                                <rect x="75" y="13" width="12" height="12" rx="2" fill="#0062FF"/>
+                                <!-- QR Corner 3 -->
+                                <rect x="5" y="67" width="28" height="28" rx="4" fill="#070F26"/>
+                                <rect x="9" y="71" width="20" height="20" rx="2" fill="#FFFFFF"/>
+                                <rect x="13" y="75" width="12" height="12" rx="2" fill="#0062FF"/>
+                                <!-- QR Pattern Elements -->
+                                <rect x="38" y="10" width="6" height="6" rx="1" fill="#070F26"/>
+                                <rect x="48" y="14" width="6" height="6" rx="1" fill="#00C2FF"/>
+                                <rect x="56" y="8" width="6" height="6" rx="1" fill="#070F26"/>
+                                <rect x="38" y="24" width="6" height="6" rx="1" fill="#070F26"/>
+                                <rect x="50" y="26" width="6" height="6" rx="1" fill="#0062FF"/>
+                                <rect x="10" y="42" width="6" height="6" rx="1" fill="#00C2FF"/>
+                                <rect x="20" y="48" width="6" height="6" rx="1" fill="#070F26"/>
+                                <rect x="80" y="42" width="6" height="6" rx="1" fill="#070F26"/>
+                                <rect x="72" y="50" width="6" height="6" rx="1" fill="#0062FF"/>
+                                <rect x="38" y="68" width="6" height="6" rx="1" fill="#070F26"/>
+                                <rect x="48" y="74" width="6" height="6" rx="1" fill="#00C2FF"/>
+                                <rect x="56" y="82" width="6" height="6" rx="1" fill="#070F26"/>
+                                <rect x="72" y="70" width="6" height="6" rx="1" fill="#070F26"/>
+                                <rect x="82" y="80" width="6" height="6" rx="1" fill="#0062FF"/>
+                                <!-- Center Emblem -->
+                                <circle cx="50" cy="50" r="14" fill="#0062FF"/>
+                                <path d="M44 50 L48 54 L56 46" stroke="#FFFFFF" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <h6 style="font-size: 15px; font-weight: 700; color: var(--slate-900); margin-bottom: 4px;">Kameranızla QR Kodu Okutun</h6>
+                        <p style="font-size: 12px; color: var(--slate-500); margin: 0;">Telefonunuzun kamerasını QR koda tutarak interaktif menüyü cihazınızda açabilirsiniz.</p>
+                    </div>
+
+                    <!-- Canlı Link & Kopyalama -->
+                    <label style="font-size: 12px; font-weight: 700; color: var(--slate-600); margin-bottom: 6px; display: block;">Menü Canlı Bağlantısı (URL):</label>
+                    <div class="ref-qr-link-box">
+                        <i class="fa-solid fa-link" style="color: var(--primary);"></i>
+                        <input type="text" id="refQrLinkInput" class="ref-qr-link-input" readonly value="https://mavitikmedya.com/menuler/luna-bistro/">
+                        <button type="button" class="ref-qr-copy-btn" onclick="copyRefQrLink()">
+                            <i class="fa-regular fa-copy"></i> Kopyala
+                        </button>
+                    </div>
+
+                    <div class="ref-qr-info-note">
+                        <i class="fa-solid fa-circle-info" style="color: var(--primary); margin-right: 4px;"></i>
+                        <strong>Hosting Entegrasyon Bilgisi:</strong> Canlıya alınacak QR kod linkiniz ve menü dosyalarınız hostinge yüklendiğinde buraya otomatik olarak bağlanır.
+                    </div>
+
+                    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                        <a id="refQrDirectOpenBtn" href="https://mavitikmedya.com/menuler/luna-bistro/" target="_blank" class="btn btn-primary btn-sm" style="flex: 1; justify-content: center;">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i> Canlı Menüyü Aç
+                        </a>
+                        <button type="button" class="btn btn-secondary btn-sm" onclick="downloadRefQr()" style="flex: 1; justify-content: center;">
+                            <i class="fa-solid fa-download"></i> QR Kodu İndir
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================================================================
+         REFERANSLAR - 4K VİDEO OYNATICI MODAL (EMLAK & MEKAN ÇEKİMLERİ)
+         ================================================================ -->
+    <div id="refVideoModal" class="ref-modal-overlay" onclick="handleRefOverlayClick(event, 'refVideoModal')">
+        <div class="ref-video-box">
+            <div class="ref-video-body-layout">
+                <!-- Sol Kolon: 9:16 Dikey Ekran Player -->
+                <div class="ref-video-screen" id="refVideoScreen">
+                    <!-- HTML5 Video Player (9:16 Dikey) -->
+                    <video id="refHtml5Video" class="ref-video-element" controls playsinline preload="metadata" style="display: none;">
+                        <source id="refVideoSource" src="" type="video/mp4">
+                        Tarayıcınız video oynatmayı desteklemiyor.
+                    </video>
+                    <!-- YouTube & Vimeo Embed Desteği -->
+                    <iframe id="refIframeVideo" class="ref-video-element" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="display: none;"></iframe>
+
+                    <!-- Video Placeholder UI -->
+                    <div class="ref-video-placeholder-ui" id="refVideoPlaceholder">
+                        <div class="ref-video-play-huge" onclick="playRefVideoDemo()">
+                            <i class="fa-solid fa-play"></i>
+                        </div>
+                        <h4 id="videoPlaceholderTitle" style="color: #fff; font-size: 19px; font-weight: 800; margin-bottom: 8px; position: relative; z-index: 2;">
+                            4K Dikey Sinematik Prodüksiyon
+                        </h4>
+                        <div style="position: relative; z-index: 2; display: inline-flex; align-items: center; gap: 8px; background: rgba(0, 194, 255, 0.2); border: 1px solid rgba(0, 194, 255, 0.4); padding: 5px 14px; border-radius: var(--radius-full); font-size: 11.5px; color: #00C2FF;">
+                            <i class="fa-solid fa-mobile-screen"></i> 9:16 Dikey Video Formatı
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sağ Kolon: Detaylar, Özellikler ve Aksiyon Paneli -->
+                <div class="ref-video-info-panel">
+                    <div>
+                        <div class="ref-video-panel-top">
+                            <div class="ref-video-badge-wrap">
+                                <span class="ref-badge-category" id="videoModalBadge"><i class="fa-solid fa-clapperboard"></i> Emlak Çekimi</span>
+                                <span class="ref-badge-916"><i class="fa-solid fa-mobile-screen"></i> 9:16 Dikey Format</span>
+                            </div>
+                            <button type="button" class="modal-close-btn" style="position: static; background: rgba(255,255,255,0.12); color: #fff; width: 32px; height: 32px;" onclick="closeRefModal('refVideoModal')" aria-label="Kapat">&times;</button>
+                        </div>
+
+                        <h4 id="videoModalTitle" class="ref-video-panel-title">Video Başlığı</h4>
+                        <div id="videoModalClient" class="ref-video-panel-client">
+                            <i class="fa-solid fa-circle-check"></i> Mavi Tik Medya Ajansı • İçerik Prodüksiyonu
+                        </div>
+
+                        <!-- 4'lü Teknik Özellik Kartları Grid -->
+                        <div class="ref-video-specs-grid">
+                            <div class="ref-video-spec-card">
+                                <h6 id="refSpecDroneLabel"><i class="fa-solid fa-helicopter"></i> Drone &amp; Ekipman</h6>
+                                <p id="refSpecDrone">4K FPV Drone</p>
+                            </div>
+                            <div class="ref-video-spec-card">
+                                <h6><i class="fa-solid fa-camera"></i> Kamera &amp; Sensör</h6>
+                                <p id="refSpecCamera">Cinema Line 4K</p>
+                            </div>
+                            <div class="ref-video-spec-card">
+                                <h6><i class="fa-solid fa-sliders"></i> Çözünürlük &amp; Oran</h6>
+                                <p id="refSpecRes">9:16 Dikey 4K UHD</p>
+                            </div>
+                            <div class="ref-video-spec-card">
+                                <h6><i class="fa-solid fa-wand-magic-sparkles"></i> Post-Prodüksiyon</h6>
+                                <p id="refSpecPost">Renk &amp; Ses Tasarımı</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Alt Aksiyon & İletişim Butonları -->
+                    <div class="ref-video-panel-actions">
+                        <a id="videoModalWaBtn" href="https://wa.me/905533650396?text=Merhaba,%20video%20ve%20prodüksiyon%20çekimleriniz%20hakkında%20bilgi%20almak%20istiyorum" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp" style="width: 100%; justify-content: center; font-size: 13.5px; padding: 11px 18px;">
+                            <i class="fa-brands fa-whatsapp"></i> WhatsApp ile Bu Çekimden İste
+                        </a>
+                        <a href="#iletisim" onclick="closeRefModal('refVideoModal')" class="btn btn-outline" style="width: 100%; justify-content: center; font-size: 13.5px; padding: 10px 18px; border-color: rgba(255,255,255,0.2); color: #fff;">
+                            <i class="fa-solid fa-paper-plane"></i> Teklif Alın
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================================================================
+         REFERANSLAR - WEB SİTESİ DETAY & CANLI ÖNİZLEME MODAL
+         ================================================================ -->
+    <div id="refWebModal" class="ref-modal-overlay" onclick="handleRefOverlayClick(event, 'refWebModal')">
+        <div class="ref-modal-box">
+            <!-- macOS Safari Tarayıcı Başlığı Mockup -->
+            <div class="ref-web-browser">
+                <div class="ref-browser-dots">
+                    <span class="ref-browser-dot red"></span>
+                    <span class="ref-browser-dot yellow"></span>
+                    <span class="ref-browser-dot green"></span>
+                </div>
+                <div class="ref-browser-bar">
+                    <i class="fa-solid fa-lock" style="color: #10B981; font-size: 11px;"></i>
+                    <span id="refBrowserUrlText">https://velvetkey-luxury.com/</span>
+                </div>
+                <button type="button" class="modal-close-btn" style="position: static; width: 30px; height: 30px; font-size: 14px;" onclick="closeRefModal('refWebModal')" aria-label="Kapat">&times;</button>
+            </div>
+
+            <div class="ref-web-body">
+                <div class="ref-web-preview-box">
+                    <img id="refWebPreviewImg" src="assets/images/referanslar/ref-web-1.jpg" alt="Web Sitesi Canlı Önizleme">
+                </div>
+
+                <div class="ref-web-details-grid">
+                    <div>
+                        <div class="ref-card-client" id="refWebClientBadge">
+                            <i class="fa-solid fa-circle-check"></i> Velvet Key • Lüks Gayrimenkul Portalı
+                        </div>
+                        <h4 id="refWebModalTitle" style="font-size: 22px; font-weight: 800; color: var(--slate-900); margin-bottom: 10px;">
+                            Velvet Key Luxury Real Estate Portalı
+                        </h4>
+                        <p id="refWebModalDesc" style="font-size: 14px; color: var(--slate-600); line-height: 1.6; margin-bottom: 14px;">
+                            Villa, rezidans ve ticari mülk portföyü için interaktif harita filtreleme, tam mobil uyumluluk, yüksek hızlı CDN ve Google SEO optimizasyonuna sahip modern kurumsal portal.
+                        </p>
+                        <div class="ref-card-tags" id="refWebTagsContainer">
+                            <span class="ref-tag">#Next.js</span>
+                            <span class="ref-tag">#TailwindCSS</span>
+                            <span class="ref-tag">#İnteraktif Harita</span>
+                            <span class="ref-tag">#SEO %100</span>
+                        </div>
+                    </div>
+                    <div style="background: var(--slate-50); border: 1px solid var(--slate-200); border-radius: var(--radius-lg); padding: 20px; display: flex; flex-direction: column; gap: 12px;">
+                        <a id="refWebVisitBtn" href="https://velvetkey-luxury.com/" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="width: 100%; justify-content: center;">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i> Canlı Siteyi Aç
+                        </a>
+                        <a href="https://wa.me/905533650396?text=Merhaba,%20benzer%20bir%20web%20sitesi%20yaptırmak%20istiyorum" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp btn-sm" style="width: 100%; justify-content: center;">
+                            <i class="fa-brands fa-whatsapp"></i> Teklif Alın
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <script>
         // 1. Navbar Scroll Effect & Active Highlight
         const navbar = document.getElementById('navbar');
@@ -4483,44 +6389,44 @@ ${message}
                 if (laserStreamRight) laserStreamRight.style.strokeDashoffset = '1000';
                 if (appleProgress) appleProgress.style.width = '0%';
 
-                // 1. İlerleme çubuğu (30ms)
+                // 1. İlerleme çubuğu (0 - 4 saniye tam akış)
                 introTimeouts.push(setTimeout(() => {
                     if (appleProgress) appleProgress.style.width = '100%';
                 }, 20));
 
-                // 2. Aurora ve Izgara Deseni (150ms)
+                // 2. Aurora ve Izgara Deseni (120ms)
                 introTimeouts.push(setTimeout(() => {
                     if (ambientAurora) ambientAurora.classList.add('ignited');
                     if (precisionGrid) precisionGrid.classList.add('active');
-                }, 80));
+                }, 120));
 
                 // 3. Lazer Çizgileri ve Kristal Işık Huzmesi (300ms)
                 introTimeouts.push(setTimeout(() => {
                     if (laserStreamLeft) laserStreamLeft.style.strokeDashoffset = '0';
                     if (laserStreamRight) laserStreamRight.style.strokeDashoffset = '0';
                     if (crystalBeam) crystalBeam.classList.add('active');
-                }, 180));
+                }, 300));
 
-                // 4. 3D Cam Kaide & Logo Sahneye Çıkar (650ms)
+                // 4. 3D Cam Kaide & Logo Sahneye Çıkar (750ms)
                 introTimeouts.push(setTimeout(() => {
                     if (glassEmblem) glassEmblem.classList.add('revealed');
                     if (crystalBeam) crystalBeam.classList.add('faded');
-                }, 480));
+                }, 750));
 
-                // 5. Yan Lazer Çizgileri Yavaşça Kaybolur, Sahne Temizlenir (900ms)
+                // 5. Yan Lazer Çizgileri Yavaşça Kaybolur, Sahne Temizlenir (1200ms)
                 introTimeouts.push(setTimeout(() => {
                     if (laserStreamsSvg) laserStreamsSvg.classList.add('faded');
-                }, 680));
+                }, 1200));
 
-                // 6. Net Tipografi & Slogan Işıkla Açılır (1050ms)
+                // 6. Net Tipografi & Slogan Işıkla Açılır (1500ms)
                 introTimeouts.push(setTimeout(() => {
                     if (titleBlock) titleBlock.classList.add('revealed');
-                }, 780));
+                }, 1500));
 
-                // 7. Sinematik Yumuşak Geçiş (3.3s)
+                // 7. Sinematik Yumuşak Geçiş (4.0s Tam Süre)
                 introTimeouts.push(setTimeout(() => {
                     finishAppleIntro();
-                }, 2400));
+                }, 4000));
             }
 
             function finishAppleIntro() {
@@ -4547,6 +6453,424 @@ ${message}
                 playAppleIntro();
             }
         })();
+
+    
+        // ================================================================
+        // REFERANSLARIMIZ (PORTFOLIO, QR MENÜ & 4K VİDEO MODAL LOGIC)
+        // ================================================================
+        
+        // Sayın Kullanıcı: En son göndereceğiniz video linkleri / dosyaları 
+        // ve QR kod canlı linklerini aşağıdaki konfigürasyon nesnesinden yönetebilirsiniz.
+        const MAVI_TIK_REFERENCES = {
+            "luna-bistro": {
+                title: "Luna Modern Bistro & Lounge QR Menü",
+                client: "Luna Bistro & Lounge • Gaziantep",
+                type: "menu",
+                qrUrl: "https://mavitikmedya.com/menuler/luna-bistro/",
+                simMenuTitle: "Luna Modern Bistro",
+                simMenuSub: "Şefin Özel Seçimleri & Kokteyller • ⭐ 4.9",
+                items: [
+                    { title: "Trüflü Dana Bonfile", price: "₺680", sub: "Patates püresi, ızgara kuşkonmaz ve trüf sosu", img: "assets/images/referanslar/ref-menu-1.jpg" },
+                    { title: "Burrata & Organik Domates", price: "₺420", sub: "Fesleğen pesto sos ve balzamik glaze ile", img: "assets/images/referanslar/ref-menu-1.jpg" },
+                    { title: "Yaban Mantarlı Risotto", price: "₺460", sub: "Parmesan çıtırı ve adaçayı aroması ile", img: "assets/images/referanslar/ref-menu-1.jpg" },
+                    { title: "İmza Botanik Kokteyl", price: "₺380", sub: "Taze narenciye, biberiye ve aromatik botanik", img: "assets/images/referanslar/ref-mekan-1.jpg" }
+                ]
+            },
+            "daily-brew": {
+                title: "The Daily Brew Specialty Coffee QR Menü",
+                client: "The Daily Brew • Kafe & Bakery",
+                type: "menu",
+                qrUrl: "https://mavitikmedya.com/menuler/daily-brew/",
+                simMenuTitle: "The Daily Brew",
+                simMenuSub: "Nitelikli 3. Dalga Kahve & Taze Fırın • ⭐ 4.8",
+                items: [
+                    { title: "Fıstıklı Artisan Kruvasan", price: "₺180", sub: "Gaziantep boz fıstık kreması dolgulu", img: "assets/images/referanslar/ref-menu-2.jpg" },
+                    { title: "Iced Ceremonial Matcha Latte", price: "₺160", sub: "Japon Uji seremoniyel matcha ve yulaf sütü", img: "assets/images/referanslar/ref-menu-2.jpg" },
+                    { title: "Single Origin Geisha Espresso", price: "₺140", sub: "Etiyopya Yirgacheffe, yasemin ve şeftali notaları", img: "assets/images/referanslar/ref-menu-2.jpg" },
+                    { title: "San Sebastian Cheesecake", price: "₺210", sub: "Sıcak Belçika çikolatası sosu ile servis", img: "assets/images/referanslar/ref-menu-2.jpg" }
+                ]
+            },
+            "balkon-kafe": {
+                title: "Balkon Kafe & Restaurant QR Menü",
+                client: "Balkon Kafe & Restaurant • Gaziantep",
+                type: "menu",
+                qrUrl: "https://mavitikmedya.com/menuler/balkon-kafe/",
+                simMenuTitle: "Balkon Kafe & Restaurant",
+                simMenuSub: "Panoramik Teras & Zengin Lezzetler • ⭐ 4.8",
+                items: [
+                    { title: "Balkon Özel Serpme Kahvaltı", price: "₺450", sub: "Yöresel peynirler, sıcak pişiler, organik reçeller ve sınırsız çay", img: "assets/images/referanslar/ref-menu-3.jpg" },
+                    { title: "Karamelize Soğanlı Balkon Burger", price: "₺320", sub: "200gr dinlendirilmiş dana köfte, cheddar peyniri ve trüflü patates", img: "assets/images/referanslar/ref-menu-3.jpg" },
+                    { title: "Taze İtalyan Fettuccine Alfredo", price: "₺290", sub: "Tavuk dilimleri, taze kültür mantarı, krema ve parmesan", img: "assets/images/referanslar/ref-menu-3.jpg" },
+                    { title: "San Sebastian Cheesecake", price: "₺180", sub: "Belçika çikolatası eritmesi eşliğinde sıcak servis", img: "assets/images/referanslar/ref-menu-3.jpg" }
+                ]
+            },
+            "mavitik-web": {
+                title: "Mavi Tik Medya Ajansı Resmi Web Platformu",
+                client: "Mavi Tik Medya Ajansı • Kurumsal & Dijital",
+                type: "web",
+                webUrl: "https://mavitikmedya.com/",
+                img: "assets/images/referanslar/ref-web-3.jpg",
+                desc: "Ajansımızın dinamik vizyonunu yansıtan modern cam-morfik tasarım, Apple esintili interaktif 3D lazer intro animasyonu, yüksek hızlı bulut CDN ve tam SEO uyumlu kurumsal web altyapısı.",
+                tags: ["Next-Gen Web", "Glassmorphism", "Apple Tarzı Intro", "Gaziantep Ajans", "SEO %100"]
+            },
+            "krextech": {
+                title: "Krextech Yazılım & Yapay Zeka Çözümleri",
+                client: "Krextech Bilişim & Teknoloji A.Ş.",
+                type: "web",
+                webUrl: "https://krextech.com/",
+                img: "assets/images/referanslar/ref-web-4.jpg",
+                desc: "Yapay zeka modelleri, kurumsal SaaS ürünleri ve modern bulut yazılım çözümlerini temsil eden yüksek performanslı, veri görselleştirmeli kurumsal teknoloji web sitesi.",
+                tags: ["SaaS Platform", "Yapay Zeka (AI)", "Cloud Mimarisi", "Modern UI/UX", "Full Responsive"]
+            },
+            "emlak-cekimi-1": {
+                title: "Sinematik 4K Emlak & Mimari Tanıtım Filmi",
+                badge: "Emlak Çekimi • 4K Drone",
+                type: "video",
+                poster: "assets/images/referanslar/ref-emlak-1.jpg",
+                videoSrc: "assets/videos/emlak-cekimi-1.mp4",
+                droneLabel: "Drone & Gimbal",
+                specs: {
+                    drone: "4K FPV & Sinematik Drone",
+                    camera: "Sony Cinema Line + Geniş Açı",
+                    resolution: "4K UHD 60FPS",
+                    post: "Renk Kurgusu & Ses Tasarımı"
+                }
+            },
+            "emlak-cekimi-2": {
+                title: "Lüks Yaşam & Rezidans Tanıtım Filmi",
+                badge: "Emlak Çekimi • 4K UHD",
+                type: "video",
+                poster: "assets/images/referanslar/ref-emlak-2.jpg",
+                videoSrc: "assets/videos/emlak-cekimi-2.mp4",
+                droneLabel: "Gimbal & Çekim",
+                specs: {
+                    drone: "Akıcı Gimbal Stabilizasyonu",
+                    camera: "Ultra HD Cinema Sensör",
+                    resolution: "4K UHD 60FPS",
+                    post: "Mimari Renk Düzenleme"
+                }
+            },
+            "mekan-cekimi-1": {
+                title: "Restoran & Kafe Atmosfer Mekan Çekimi",
+                badge: "Mekan Çekimi • 4K 60FPS",
+                type: "video",
+                poster: "assets/images/referanslar/ref-mekan-1.jpg",
+                videoSrc: "assets/videos/mekan-cekimi-1.mp4",
+                droneLabel: "Dinamik Çekim",
+                specs: {
+                    drone: "El Tipi Gimbal & Slider",
+                    camera: "Sony Alpha Serisi 4K",
+                    resolution: "4K 60FPS Dikey/Yatay",
+                    post: "Instagram Reels & Tanıtım Kurgusu"
+                }
+            },
+            "urun-cekimi-1": {
+                title: "Özel Tasarım Nargile & Ürün Çekimi",
+                badge: "Ürün Çekimi • 9:16 Dikey",
+                type: "video",
+                poster: "assets/images/referanslar/ref-urun-1.jpg",
+                videoSrc: "assets/videos/urun-cekimi-1.mov",
+                droneLabel: "Stüdyo & Işık",
+                specs: {
+                    drone: "Özel Stüdyo Işık & Duman",
+                    camera: "Makro Lens & 4K Sensör",
+                    resolution: "9:16 Dikey 4K Makro Video",
+                    post: "Ticari Reklam & Renk Kurgusu"
+                }
+            }
+        };
+
+        // ================================================================
+        // REFERANSLAR - KATEGORİ FİLTRELEME MANTIĞI
+        // ================================================================
+        function filterReferanslar(filter, btn) {
+            const buttons = document.querySelectorAll('.ref-filter-btn');
+            buttons.forEach(b => {
+                if (b.getAttribute('data-filter') === filter || b === btn) {
+                    b.classList.add('active');
+                } else {
+                    b.classList.remove('active');
+                }
+            });
+
+            const cards = document.querySelectorAll('.ref-card');
+            let visibleCount = 0;
+            cards.forEach(card => {
+                const categories = (card.getAttribute('data-category') || '').split(/\s+/).filter(Boolean);
+                if (filter === 'all' || categories.includes(filter)) {
+                    card.classList.remove('ref-card-hide');
+                    card.style.display = '';
+                    visibleCount++;
+                } else {
+                    card.classList.add('ref-card-hide');
+                    card.style.display = 'none';
+                }
+            });
+
+            const emptyNotice = document.getElementById('refEmptyNotice');
+            if (emptyNotice) {
+                if (visibleCount === 0) {
+                    emptyNotice.style.display = 'block';
+                    const catLabels = {
+                        'emlak': 'Emlak Çekimi',
+                        'icerik': 'İçerik Çekimi',
+                        'mekan': 'Mekan Çekimi',
+                        'urun': 'Ürün Çekimi'
+                    };
+                    const label = catLabels[filter] || 'Bu Kategoriye Ait';
+                    const titleEl = document.getElementById('refEmptyTitle');
+                    if (titleEl) {
+                        titleEl.textContent = label + ' Referanslarımız Çok Yakında';
+                    }
+                } else {
+                    emptyNotice.style.display = 'none';
+                }
+            }
+        }
+        window.filterReferanslar = filterReferanslar;
+
+        function initRefFilters() {
+            const buttons = document.querySelectorAll('.ref-filter-btn');
+            buttons.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    const filter = this.getAttribute('data-filter');
+                    filterReferanslar(filter, this);
+                });
+            });
+
+            // Simülatör içi kategori butonları desteği
+            document.querySelectorAll('.ref-sim-cat-btn').forEach(catBtn => {
+                catBtn.addEventListener('click', function() {
+                    document.querySelectorAll('.ref-sim-cat-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initRefFilters);
+        } else {
+            initRefFilters();
+        }
+
+        // Genel Modal Açma Yönlendiricisi
+        function openRefModal(refId) {
+            const data = MAVI_TIK_REFERENCES[refId];
+            if (!data) return;
+
+            if (data.type === 'menu') {
+                // QR Modal Doldur
+                document.getElementById('qrModalHeadingTitle').textContent = data.title;
+                document.getElementById('simHeaderTitle').textContent = data.simMenuTitle;
+                document.getElementById('simHeaderSub').textContent = data.simMenuSub;
+                document.getElementById('refQrLinkInput').value = data.qrUrl;
+                document.getElementById('refQrDirectOpenBtn').href = data.qrUrl;
+
+                const container = document.getElementById('simItemsContainer');
+                container.innerHTML = '';
+                data.items.forEach(item => {
+                    const div = document.createElement('div');
+                    div.className = 'ref-sim-item';
+                    div.innerHTML = `
+                        <img src="${item.img}" alt="${item.title}" class="ref-sim-item-img">
+                        <div class="ref-sim-item-details">
+                            <div class="ref-sim-item-title">${item.title}</div>
+                            <div class="ref-sim-item-sub">${item.sub}</div>
+                        </div>
+                        <div class="ref-sim-item-price">${item.price}</div>
+                    `;
+                    container.appendChild(div);
+                });
+
+                openModalDirect('refQrModal');
+
+            } else if (data.type === 'video') {
+                // Video Modal Doldur
+                document.getElementById('videoModalTitle').textContent = data.title;
+                document.getElementById('videoModalBadge').innerHTML = `<i class="fa-solid fa-clapperboard"></i> ${data.badge}`;
+                document.getElementById('videoPlaceholderTitle').textContent = data.title;
+                const clientEl = document.getElementById('videoModalClient');
+                if (clientEl && data.client) {
+                    clientEl.innerHTML = `<i class="fa-solid fa-circle-check"></i> ${data.client}`;
+                }
+                const waBtn = document.getElementById('videoModalWaBtn');
+                if (waBtn) {
+                    waBtn.href = 'https://wa.me/905533650396?text=' + encodeURIComponent('Merhaba, ' + data.title + ' (9:16 Dikey Çekim) referansınızı inceledim ve benzer bir çekim yaptırmak istiyorum.');
+                }
+                const droneLabel = document.getElementById('refSpecDroneLabel');
+                if (droneLabel) {
+                    droneLabel.innerHTML = `<i class="fa-solid fa-sliders"></i> ${data.droneLabel || 'Ekipman'}`;
+                }
+                document.getElementById('refSpecDrone').textContent = data.specs.drone;
+                document.getElementById('refSpecCamera').textContent = data.specs.camera;
+                document.getElementById('refSpecRes').textContent = data.specs.resolution;
+                document.getElementById('refSpecPost').textContent = data.specs.post;
+
+                const videoScreen = document.getElementById('refVideoScreen');
+                const html5Video = document.getElementById('refHtml5Video');
+                const iframeVideo = document.getElementById('refIframeVideo');
+                const placeholder = document.getElementById('refVideoPlaceholder');
+
+                placeholder.style.backgroundImage = `url('${data.poster}')`;
+
+                // Reset player states
+                html5Video.style.display = 'none';
+                html5Video.pause();
+                if (iframeVideo) {
+                    iframeVideo.style.display = 'none';
+                    iframeVideo.src = '';
+                }
+                placeholder.style.display = 'flex';
+
+                if (data.videoSrc && data.videoSrc.trim() !== '') {
+                    const src = data.videoSrc.trim();
+                    if ((src.includes('youtube.com') || src.includes('youtu.be')) && iframeVideo) {
+                        let embedUrl = src;
+                        if (src.includes('watch?v=')) {
+                            embedUrl = src.replace('watch?v=', 'embed/');
+                        } else if (src.includes('youtu.be/')) {
+                            embedUrl = src.replace('youtu.be/', 'www.youtube.com/embed/');
+                        }
+                        iframeVideo.src = embedUrl;
+                        iframeVideo.style.display = 'block';
+                        placeholder.style.display = 'none';
+                    } else if (src.includes('vimeo.com') && iframeVideo) {
+                        const vimeoId = src.split('/').filter(Boolean).pop();
+                        iframeVideo.src = 'https://player.vimeo.com/video/' + vimeoId;
+                        iframeVideo.style.display = 'block';
+                        placeholder.style.display = 'none';
+                    } else {
+                        // Local MP4, MOV or WebM video file
+                        const videoSource = document.getElementById('refVideoSource');
+                        videoSource.src = src;
+                        if (src.toLowerCase().endsWith('.mov')) {
+                            videoSource.type = 'video/mp4';
+                        } else {
+                            videoSource.type = 'video/mp4';
+                        }
+                        html5Video.style.display = 'block';
+                        placeholder.style.display = 'none';
+                        html5Video.load();
+                        html5Video.play().catch(e => console.log('Autoplay prevented:', e));
+                    }
+                }
+
+                openModalDirect('refVideoModal');
+
+            } else if (data.type === 'web') {
+                // Web Preview Modal Doldur
+                document.getElementById('refBrowserUrlText').textContent = data.webUrl;
+                document.getElementById('refWebModalTitle').textContent = data.title;
+                document.getElementById('refWebClientBadge').innerHTML = `<i class="fa-solid fa-circle-check"></i> ${data.client}`;
+                document.getElementById('refWebModalDesc').textContent = data.desc;
+                document.getElementById('refWebPreviewImg').src = data.img;
+                document.getElementById('refWebVisitBtn').href = data.webUrl;
+
+                const tagsContainer = document.getElementById('refWebTagsContainer');
+                tagsContainer.innerHTML = '';
+                data.tags.forEach(t => {
+                    const span = document.createElement('span');
+                    span.className = 'ref-tag';
+                    span.textContent = '#' + t;
+                    tagsContainer.appendChild(span);
+                });
+
+                openModalDirect('refWebModal');
+            }
+        }
+
+        function openModalDirect(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeRefModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+
+                // Video açıksa durdur
+                const video = modal.querySelector('video');
+                if (video) {
+                    video.pause();
+                }
+                const iframe = modal.querySelector('iframe');
+                if (iframe) {
+                    iframe.src = '';
+                }
+            }
+        }
+
+        function handleRefOverlayClick(e, modalId) {
+            if (e.target.classList.contains('ref-modal-overlay')) {
+                closeRefModal(modalId);
+            }
+        }
+
+        function copyRefQrLink() {
+            const input = document.getElementById('refQrLinkInput');
+            input.select();
+            input.setSelectionRange(0, 99999);
+            navigator.clipboard.writeText(input.value).then(() => {
+                alert('Menü bağlantısı panoya kopyalandı:\n' + input.value);
+            }).catch(() => {
+                alert('Bağlantı: ' + input.value);
+            });
+        }
+
+        function downloadRefQr() {
+            const svg = document.getElementById('qrSvgElement');
+            const svgData = new XMLSerializer().serializeToString(svg);
+            const blob = new Blob([svgData], { type: 'image/svg+xml;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'mavitik-qr-menu.svg';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        function playRefVideoDemo() {
+            const html5Video = document.getElementById('refHtml5Video');
+            const placeholder = document.getElementById('refVideoPlaceholder');
+            const videoSource = document.getElementById('refVideoSource');
+
+            // Kullanıcı kendi dosyasını yükleyene kadar oynatılabilecek 4K örnek sinematik demo
+            const sampleDemoUrl = 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4';
+            
+            videoSource.src = sampleDemoUrl;
+            html5Video.style.display = 'block';
+            placeholder.style.display = 'none';
+            html5Video.load();
+            html5Video.play().catch(e => {
+                console.log('Video autoplay prevented or offline:', e);
+            });
+        }
+
+        
+        // Global Window Bindings for Inline HTML Onclick Handlers
+        window.openRefModal = openRefModal;
+        window.closeRefModal = closeRefModal;
+        window.openModalDirect = openModalDirect;
+        window.handleRefOverlayClick = handleRefOverlayClick;
+        window.copyRefQrLink = copyRefQrLink;
+        window.downloadRefQr = downloadRefQr;
+        window.playRefVideoDemo = playRefVideoDemo;
+
+        // ESC Tuşu ile Referans Modallarını da Kapatma Desteği
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.ref-modal-overlay.active').forEach(m => {
+                    closeRefModal(m.id);
+                });
+            }
+        });
 
     </script>
 </body>
