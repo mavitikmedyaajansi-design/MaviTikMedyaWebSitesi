@@ -12,7 +12,7 @@
  *     date: "2026-10-28",                ← tarih
  *     duration: "03:45"                  ← süre (opsiyonel)
  * }
- * 
+ *
  * KATEGORİLER:
  *   "emlak"    → Emlak Çekimlerimiz
  *   "mekan"    → Mekan Çekimlerimiz
