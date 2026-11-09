@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Mavi Makav Flight Test</title>
+    <style>
+        body {
+            margin: 0;
+            background: #0B132B;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            color: #fff;
+            font-family: sans-serif;
+        }
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="c"></canvas>
+    <script>
+        const canvas = document.getElementById('c');
+        const ctx = canvas.getContext('2d');
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
+
+        window.addEventListener('resize', () => {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        });
+
+        // Flight parameters
+        let time = 0;
+        let birdX = -100;
+        let birdY = height * 0.7;
+        let birdSpeedX = 4;
+        let birdScale = 1;
+        let flightProgress = 0;
+
+        function drawMacaw(ctx, x, y, scale, angle, wingPhase) {
+            ctx.save();
+            ctx.translate(x, y);
+            ctx.rotate(angle);
+            ctx.scale(scale, scale);
+
+            // Natural wing kinematics
+            // wingPhase goes from 0 to 2PI
+            const flap = Math.sin(wingPhase);
+            const flapCos = Math.cos(wingPhase);
+            
+            // Body bobbing in counter-phase to wing lift
+            const bodyBob = flap * 4;
+            
+            // Colors
+            const deepCobalt = '#0040A8';
+            const royalBlue = '#0062FF';
+            const brightCyan = '#00C2FF';
+            const lightCyan = '#38BDF8';
+            const goldYellow = '#F59E0B';
+            const darkSlate = '#1E293B';
+            const whiteFeather = '#FFFFFF';
+
+            // 1. BACK WING (Arka Kanat)
+            ctx.save();
+            ctx.translate(-10, -5 + bodyBob);
+            // Back wing flaps with slightly reduced amplitude and phase offset for 3D depth
+            const backFlapAngle = flap * 0.65;
+            ctx.rotate(backFlapAngle);
+            
+            // Back wing feathers (primaries & secondaries)
+            for (let i = 0; i < 7; i++) {
+                const fAngle = -0.8 + (i * 0.16) - (flapCos * 0.15);
+                const fLen = 85 - (i * 6);
+                const tipX = Math.cos(fAngle) * fLen;
+                const tipY = Math.sin(fAngle) * fLen;
+
+                ctx.beginPath();
+                ctx.moveTo(0, 0);
+                ctx.quadraticCurveTo(tipX * 0.5, tipY * 0.7 + 10, tipX, tipY);
+                ctx.quadraticCurveTo(tipX * 0.6 - 8, tipY * 0.4, 0, 10);
+                ctx.fillStyle = i < 3 ? deepCobalt : '#00338A';
+                ctx.fill();
+            }
+            ctx.restore();
+
+            // 2. STREAMING MACAW TAIL (Uzun İpeksi Kuyruk)
+            ctx.save();
+            ctx.translate(-45, 15 + bodyBob);
+            // Sinuous waving motion along tail length
+            for (let t = 0; t < 3; t++) {
+                const tailLen = 130 - (t * 25);
+                const tailWave = Math.sin(wingPhase * 0.8 - t * 0.4) * 12;
+                
+                ctx.beginPath();
+                ctx.moveTo(0, 0);
+                ctx.quadraticCurveTo(-tailLen * 0.4, 15 + tailWave * 0.5, -tailLen, 25 + tailWave);
+                ctx.quadraticCurveTo(-tailLen * 0.5, 30 + tailWave * 0.7, 0, 10);
+                ctx.fillStyle = t === 0 ? royalBlue : (t === 1 ? brightCyan : deepCobalt);
+                ctx.fill();
+            }
+            ctx.restore();
+
+            // 3. BODY & HEAD & BEAK (Gövde, Baş ve Gaga)
+            ctx.save();
+            ctx.translate(0, bodyBob);
+
+            // Aerodynamic Torso
+            ctx.beginPath();
+            ctx.moveTo(-45, 12);
+            ctx.bezierCurveTo(-20, 24, 20, 22, 38, 5);
+            ctx.bezierCurveTo(42, -5, 30, -16, 5, -16);
+            ctx.bezierCurveTo(-25, -16, -40, -2, -45, 12);
+            const bodyGrad = ctx.createLinearGradient(-40, 0, 40, 0);
+            bodyGrad.addColorStop(0, deepCobalt);
+            bodyGrad.addColorStop(0.5, royalBlue);
+            bodyGrad.addColorStop(1, '#0077FF');
+            ctx.fillStyle = bodyGrad;
+            ctx.fill();
+
+            // Golden-yellow breast plumage
+            ctx.beginPath();
+            ctx.moveTo(10, 18);
+            ctx.bezierCurveTo(25, 18, 36, 12, 38, 5);
+            ctx.bezierCurveTo(34, 0, 20, 4, 10, 8);
+            ctx.closePath();
+            ctx.fillStyle = goldYellow;
+            ctx.fill();
+
+            // Head and Crown
+            ctx.beginPath();
+            ctx.arc(36, -6, 15, 0, Math.PI * 2);
+            ctx.fillStyle = royalBlue;
+            ctx.fill();
+
+            // White facial skin patch (Iconic Macaw Eye Patch)
+            ctx.beginPath();
+            ctx.ellipse(40, -7, 9, 7, 0.2, 0, Math.PI * 2);
+            ctx.fillStyle = whiteFeather;
+            ctx.fill();
+
+            // Eye (dark pupil + bright specular dot)
+            ctx.beginPath();
+            ctx.arc(40, -8, 2.8, 0, Math.PI * 2);
+            ctx.fillStyle = darkSlate;
+            ctx.fill();
+            ctx.beginPath();
+            ctx.arc(41, -9, 0.9, 0, Math.PI * 2);
+            ctx.fillStyle = whiteFeather;
+            ctx.fill();
+
+            // Hooked Macaw Beak (curved dark beak)
+            ctx.beginPath();
+            ctx.moveTo(46, -11);
+            ctx.bezierCurveTo(56, -9, 62, -2, 60, 9);
+            ctx.bezierCurveTo(55, 7, 50, 0, 45, -2);
+            ctx.closePath();
+            ctx.fillStyle = darkSlate;
+            ctx.fill();
+
+            // Lower beak
+            ctx.beginPath();
+            ctx.moveTo(45, 0);
+            ctx.bezierCurveTo(50, 2, 53, 5, 52, 8);
+            ctx.bezierCurveTo(48, 7, 45, 4, 44, 2);
+            ctx.closePath();
+            ctx.fillStyle = '#0F172A';
+            ctx.fill();
+
+            ctx.restore();
+
+            // 4. FRONT WING (Görkemli Ön Kanat - Dynamic Jointed Feathers)
+            ctx.save();
+            ctx.translate(5, -6 + bodyBob);
+            
+            // Front wing flap angle:
+            // Downstroke: sweeps down to +0.85 rad
+            // Upstroke: pulls up to -0.95 rad
+            const frontFlapAngle = flap * 0.9;
+            ctx.rotate(frontFlapAngle);
+
+            // Layered Primaries & Secondaries with aerodynamic flex
+            // On downstroke (flap > 0), feathers flex upwards at tips (air resistance pushes up)
+            // On upstroke (flap < 0), feathers trail downwards and fold inward
+            const airFlex = flapCos * 14;
+
+            const numFeathers = 9;
+            for (let i = 0; i < numFeathers; i++) {
+                const ratio = i / (numFeathers - 1);
+                // Fan out angle
+                const featherAngle = -1.1 + (ratio * 1.35) - (flapCos * 0.22 * ratio);
+                const featherLen = 110 - (ratio * 30);
+                
+                const tipX = Math.cos(featherAngle) * featherLen;
+                const tipY = Math.sin(featherAngle) * featherLen + (airFlex * (1 - ratio * 0.4));
+
+                // Individual feather shape
+                ctx.beginPath();
+                ctx.moveTo(0, 0);
+                ctx.quadraticCurveTo(tipX * 0.45, tipY * 0.7 + 12, tipX, tipY);
+                ctx.quadraticCurveTo(tipX * 0.65 - 10, tipY * 0.4 - 5, 0, 12);
+                
+                // Color gradient across wing:
+                // Inner secondaries are deep royal blue, outer primaries fade to electric cyan
+                const fGrad = ctx.createLinearGradient(0, 0, tipX, tipY);
+                fGrad.addColorStop(0, royalBlue);
+                fGrad.addColorStop(0.7, brightCyan);
+                fGrad.addColorStop(1, lightCyan);
+                ctx.fillStyle = fGrad;
+                ctx.fill();
+
+                // Subtle quill line
+                ctx.beginPath();
+                ctx.moveTo(0, 0);
+                ctx.lineTo(tipX * 0.85, tipY * 0.85);
+                ctx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
+                ctx.lineWidth = 1;
+                ctx.stroke();
+            }
+
+            // Shoulder covert feathers (smooth cap)
+            ctx.beginPath();
+            ctx.ellipse(0, 5, 22, 14, -0.2, 0, Math.PI * 2);
+            ctx.fillStyle = royalBlue;
+            ctx.fill();
+
+            ctx.restore();
+            ctx.restore();
+        }
+
+        // Particle trail
+        const particles = [];
+
+        function loop() {
+            ctx.clearRect(0, 0, width, height);
+
+            time += 0.08;
+            flightProgress += 0.0035;
+
+            // Flight trajectory: swoop across screen
+            birdX = -100 + flightProgress * (width + 300);
+            birdY = height * 0.6 - Math.sin(flightProgress * Math.PI) * (height * 0.35);
+            
+            // Dynamic angle based on slope
+            const nextX = -100 + (flightProgress + 0.01) * (width + 300);
+            const nextY = height * 0.6 - Math.sin((flightProgress + 0.01) * Math.PI) * (height * 0.35);
+            const flightAngle = Math.atan2(nextY - birdY, nextX - birdX);
+
+            // Flap cycle speed: 0.18
+            const wingPhase = time * 2.2;
+
+            // Draw trail sparkles
+            if (birdX > 0 && birdX < width) {
+                particles.push({
+                    x: birdX - Math.cos(flightAngle) * 50 + (Math.random() - 0.5) * 15,
+                    y: birdY - Math.sin(flightAngle) * 50 + (Math.random() - 0.5) * 15,
+                    vx: (Math.random() - 0.5) * 1.5 - 1.5,
+                    vy: Math.random() * 1.5 + 0.3,
+                    size: Math.random() * 3 + 1.5,
+                    alpha: 1,
+                    color: ['#00C2FF', '#38BDF8', '#FBBF24', '#FFFFFF'][Math.floor(Math.random() * 4)]
+                });
+            }
+
+            // Update & draw particles
+            for (let i = particles.length - 1; i >= 0; i--) {
+                const p = particles[i];
+                p.x += p.vx;
+                p.y += p.vy;
+                p.alpha -= 0.02;
+
+                if (p.alpha <= 0) {
+                    particles.splice(i, 1);
+                    continue;
+                }
+
+                ctx.save();
+                ctx.globalAlpha = p.alpha;
+                ctx.fillStyle = p.color;
+                ctx.shadowBlur = 8;
+                ctx.shadowColor = p.color;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+            }
+
+            // Draw the Macaw
+            drawMacaw(ctx, birdX, birdY, 1.1, flightAngle, wingPhase);
+
+            if (flightProgress > 1.2) {
+                flightProgress = 0;
+            }
+
+            requestAnimationFrame(loop);
+        }
+
+        loop();
+    </script>
+</body>
+</html>

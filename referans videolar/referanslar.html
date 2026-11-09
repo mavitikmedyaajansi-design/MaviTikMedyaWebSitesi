@@ -6,17 +6,23 @@
     <meta name="description" content="Mavi Tik Medya - Çekimlerimiz | Emlak, Mekan, Ürün Çekimleri, QR Menü ve Web Siteleri">
     <title>Çekimlerimiz | Mavi Tik Medya Ajansı</title>
     <link rel="stylesheet" href="style.css">
+    <!-- FontAwesome 6.4.0 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="icon" href="../assets/images/logo.png" type="image/png">
 </head>
 <body>
 
     <!-- ===== NAVBAR (Mavi Tik Medya) ===== -->
     <header class="navbar" id="navbar">
         <div class="navbar-container">
-            <a href="https://mavitikmedya.com/" class="navbar-brand">
-                <div class="brand-icon">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="20 6 9 17 4 12"></polyline>
-                    </svg>
+            <a href="../index.html" class="navbar-brand">
+                <div class="brand-icon" style="background: rgba(0, 98, 255, 0.1); padding: 4px; display: flex; align-items: center; justify-content: center; border-radius: 10px;">
+                    <img src="../assets/images/logo-emblem.png" alt="Mavi Tik" style="width: 26px; height: 26px; object-fit: contain;">
                 </div>
                 <div class="brand-text">
                     <span class="brand-name">Mavi Tik Medya</span>
@@ -25,12 +31,12 @@
             </a>
 
             <nav class="navbar-menu" id="navbar-menu">
-                <a href="https://mavitikmedya.com/#anasayfa" class="nav-link">Ana Sayfa</a>
-                <a href="https://mavitikmedya.com/#hakkimizda" class="nav-link">Kurumsal</a>
-                <a href="https://mavitikmedya.com/#hizmetler" class="nav-link">Hizmetlerimiz</a>
+                <a href="../index.html#anasayfa" class="nav-link">Ana Sayfa</a>
+                <a href="../index.html#hakkimizda" class="nav-link">Kurumsal</a>
+                <a href="../index.html#hizmetler" class="nav-link">Hizmetlerimiz</a>
                 <a href="referanslar.html" class="nav-link active">Çekimlerimiz</a>
-                <a href="https://mavitikmedya.com/#sss" class="nav-link">S.S.S.</a>
-                <a href="https://mavitikmedya.com/#iletisim" class="nav-link">İletişim</a>
+                <a href="../index.html#sss" class="nav-link">S.S.S.</a>
+                <a href="../index.html#iletisim" class="nav-link">İletişim</a>
             </nav>
 
             <div class="navbar-actions">
@@ -46,7 +52,7 @@
                         <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
                     </svg>
                 </a>
-                <a href="https://mavitikmedya.com/#iletisim" class="cta-btn">Teklif Alın</a>
+                <a href="../index.html#iletisim" class="cta-btn">Teklif Alın</a>
             </div>
 
             <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Menü">
@@ -98,6 +104,10 @@
                 <button class="filter-btn" data-filter="urun" id="filter-urun">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
                     Ürün Çekimleri
+                </button>
+                <button class="filter-btn" data-filter="icerik" id="filter-icerik">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
+                    İçerik Çekimleri
                 </button>
                 <button class="filter-btn" data-filter="qrmenu" id="filter-qrmenu">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect><path d="M14 14h3v3"></path><path d="M20 14v3h-3"></path><path d="M14 20h3"></path><path d="M20 20h0"></path></svg>
@@ -165,10 +175,8 @@
                 <!-- Column 1: Brand -->
                 <div class="footer-col footer-brand-col">
                     <div class="footer-brand">
-                        <div class="brand-icon">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>
+                        <div class="brand-icon" style="background: rgba(0, 98, 255, 0.1); padding: 4px; display: flex; align-items: center; justify-content: center; border-radius: 10px;">
+                            <img src="../assets/images/logo-emblem.png" alt="Mavi Tik" style="width: 24px; height: 24px; object-fit: contain;">
                         </div>
                         <span class="brand-name">Mavi Tik Medya</span>
                     </div>
@@ -189,11 +197,11 @@
                 <div class="footer-col">
                     <h4 class="footer-heading">Kurumsal</h4>
                     <ul class="footer-links">
-                        <li><a href="https://mavitikmedya.com/#anasayfa">Ana Sayfa</a></li>
-                        <li><a href="https://mavitikmedya.com/#hakkimizda">Hakkımızda</a></li>
-                        <li><a href="https://mavitikmedya.com/#hikayemiz">Hikayemiz</a></li>
-                        <li><a href="https://mavitikmedya.com/#nasil-calisiyoruz">Nasıl Çalışıyoruz?</a></li>
-                        <li><a href="https://mavitikmedya.com/#sss">Sıkça Sorulan Sorular</a></li>
+                        <li><a href="../index.html#anasayfa">Ana Sayfa</a></li>
+                        <li><a href="../index.html#hakkimizda">Hakkımızda</a></li>
+                        <li><a href="../index.html#hikayemiz">Hikayemiz</a></li>
+                        <li><a href="../index.html#nasil-calisiyoruz">Nasıl Çalışıyoruz?</a></li>
+                        <li><a href="../index.html#sss">Sıkça Sorulan Sorular</a></li>
                     </ul>
                 </div>
 
@@ -201,12 +209,12 @@
                 <div class="footer-col">
                     <h4 class="footer-heading">Hizmetlerimiz</h4>
                     <ul class="footer-links">
-                        <li><a href="https://mavitikmedya.com/#hizmetler">Sosyal Medya Yönetimi</a></li>
-                        <li><a href="https://mavitikmedya.com/#hizmetler">Web Tasarım & SEO</a></li>
-                        <li><a href="https://mavitikmedya.com/#hizmetler">Dijital Reklamcılık</a></li>
-                        <li><a href="https://mavitikmedya.com/#hizmetler">Kurumsal Kimlik</a></li>
-                        <li><a href="https://mavitikmedya.com/#hizmetler">Yapay Zeka Çözümleri</a></li>
-                        <li><a href="https://mavitikmedya.com/#hizmetler">360° Görsel Çözümler</a></li>
+                        <li><a href="../index.html#hizmetler">Sosyal Medya Yönetimi</a></li>
+                        <li><a href="../index.html#hizmetler">Web Tasarım & SEO</a></li>
+                        <li><a href="../index.html#hizmetler">Dijital Reklamcılık</a></li>
+                        <li><a href="../index.html#hizmetler">Kurumsal Kimlik</a></li>
+                        <li><a href="../index.html#hizmetler">Yapay Zeka Çözümleri</a></li>
+                        <li><a href="../index.html#hizmetler">360° Görsel Çözümler</a></li>
                     </ul>
                 </div>
 
@@ -234,9 +242,9 @@
             <div class="footer-container">
                 <p>&copy; 2026 Mavi Tik Medya Ajansı. Tüm hakları saklıdır.</p>
                 <div class="footer-legal">
-                    <a href="#">KVKK Aydınlatma Metni</a>
-                    <a href="#">Gizlilik ve Çerez Politikası</a>
-                    <a href="#">Kullanım Koşulları</a>
+                    <a href="../index.html#iletisim">KVKK Aydınlatma Metni</a>
+                    <a href="../index.html#iletisim">Gizlilik ve Çerez Politikası</a>
+                    <a href="../index.html#iletisim">Kullanım Koşulları</a>
                 </div>
             </div>
         </div>

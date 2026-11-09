@@ -1,4 +1,4 @@
-// ===== APP.JS - Mavi Tik Medya Video Galeri =====
+﻿// ===== APP.JS - Mavi Tik Medya Video Galeri =====
 
 document.addEventListener('DOMContentLoaded', () => {
     const galleryGrid = document.getElementById('gallery-grid');
@@ -21,6 +21,31 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentFilter = 'all';
     let currentSearch = '';
 
+    // ===== Dynamic Storage Sync =====
+    function getActiveVideos() {
+        try {
+            const saved = localStorage.getItem('mavitik_custom_refs');
+            if (saved) {
+                const refs = JSON.parse(saved);
+                const customVideos = [];
+                for (const [id, r] of Object.entries(refs)) {
+                    if (r.type === 'video') {
+                        customVideos.push({
+                            title: r.title,
+                            description: r.desc || r.client || '',
+                            src: r.videoSrc && r.videoSrc.startsWith('videolar/') ? '../' + r.videoSrc : (r.videoSrc || ''),
+                            category: r.category || 'emlak',
+                            date: '2026-10-31',
+                            duration: '4K UHD'
+                        });
+                    }
+                }
+                if (customVideos.length > 0) return customVideos;
+            }
+        } catch(e) {}
+        return VIDEOS;
+    }
+
     // ===== Initialize =====
     function init() {
         updateStats();
@@ -30,8 +55,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ===== Update Stats =====
     function updateStats() {
-        const total = VIDEOS.length;
-        const categories = new Set(VIDEOS.map(v => v.category));
+        const allVids = getActiveVideos();
+        const total = allVids.length;
+        const categories = new Set(allVids.map(v => v.category));
         animateNumber(totalCount, total);
         animateNumber(categoryCount, categories.size);
     }
@@ -51,7 +77,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ===== Render Videos =====
     function renderVideos() {
-        const filtered = VIDEOS.filter(video => {
+        const allVids = getActiveVideos();
+        const filtered = allVids.filter(video => {
             const matchesFilter = currentFilter === 'all' || video.category === currentFilter;
             const matchesSearch = currentSearch === '' ||
                 video.title.toLowerCase().includes(currentSearch.toLowerCase()) ||
@@ -141,8 +168,19 @@ document.addEventListener('DOMContentLoaded', () => {
         modalOverlay.classList.add('active');
         document.body.style.overflow = 'hidden';
 
+        modalVideo.onerror = function() {
+            console.warn('Galeri video oynatılamadı:', video.src);
+        };
+
         setTimeout(() => {
-            modalVideo.play().catch(() => {});
+            const p = modalVideo.play();
+            if (p !== undefined) {
+                p.catch(e => {
+                    console.log('Galeri autoplay sessize alınıyor:', e);
+                    modalVideo.muted = true;
+                    modalVideo.play().catch(() => {});
+                });
+            }
         }, 400);
     }
 
