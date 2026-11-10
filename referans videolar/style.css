@@ -1097,3 +1097,25 @@ body {
         gap: 12px;
     }
 }
+
+.modal-video-container video {
+    max-height: min(540px, 64dvh);
+    object-fit: contain;
+    background: #000;
+}
+
+.modal-close {
+    width: 44px;
+    height: 44px;
+}
+
+@media (max-width: 760px), (max-height: 500px) {
+    .modal-overlay {
+        padding: 8px;
+    }
+
+    .modal {
+        max-height: calc(100dvh - 16px);
+        overscroll-behavior: contain;
+    }
+}

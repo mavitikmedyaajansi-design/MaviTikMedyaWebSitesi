@@ -23,27 +23,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ===== Dynamic Storage Sync =====
     function getActiveVideos() {
+        let references = DEFAULT_REFERENCES;
         try {
-            const saved = localStorage.getItem('mavitik_custom_refs');
-            if (saved) {
-                const refs = JSON.parse(saved);
-                const customVideos = [];
-                for (const [id, r] of Object.entries(refs)) {
-                    if (r.type === 'video') {
-                        customVideos.push({
-                            title: r.title,
-                            description: r.desc || r.client || '',
-                            src: r.videoSrc && r.videoSrc.startsWith('videolar/') ? '../' + r.videoSrc : (r.videoSrc || ''),
-                            category: r.category || 'emlak',
-                            date: '2026-10-31',
-                            duration: '4K UHD'
-                        });
-                    }
-                }
-                if (customVideos.length > 0) return customVideos;
-            }
-        } catch(e) {}
-        return VIDEOS;
+            const saved = JSON.parse(localStorage.getItem('mavitik_custom_refs'));
+            if (saved && typeof saved === 'object' && !Array.isArray(saved)) references = saved;
+        } catch {}
+
+        return Object.values(references)
+            .filter(reference => reference?.type === 'video' && reference.videoSrc)
+            .map(reference => ({
+                title: reference.title || '',
+                description: reference.desc || reference.client || '',
+                src: new URL(normalizeReferenceVideoPath(reference.videoSrc), new URL('../', document.baseURI)).href,
+                poster: reference.poster ? new URL(reference.poster, new URL('../', document.baseURI)).href : '',
+                category: reference.category || 'emlak',
+                date: reference.date || '',
+                duration: reference.duration || ''
+            }));
     }
 
     // ===== Initialize =====
@@ -81,8 +77,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const filtered = allVids.filter(video => {
             const matchesFilter = currentFilter === 'all' || video.category === currentFilter;
             const matchesSearch = currentSearch === '' ||
-                video.title.toLowerCase().includes(currentSearch.toLowerCase()) ||
-                video.description.toLowerCase().includes(currentSearch.toLowerCase());
+                video.title.toLocaleLowerCase('tr-TR').includes(currentSearch.toLocaleLowerCase('tr-TR')) ||
+                video.description.toLocaleLowerCase('tr-TR').includes(currentSearch.toLocaleLowerCase('tr-TR'));
             return matchesFilter && matchesSearch;
         });
 
@@ -119,7 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         card.innerHTML = `
             <div class="card-thumbnail">
-                <video src="${video.src}" preload="metadata" muted></video>
+                <video preload="none" muted playsinline></video>
                 <div class="card-play-btn">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                         <polygon points="5 3 19 12 5 21 5 3"></polygon>
@@ -140,8 +136,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Hover video preview
         const thumbVideo = card.querySelector('.card-thumbnail video');
-        card.addEventListener('mouseenter', () => {
-            thumbVideo.currentTime = 0;
+        thumbVideo.poster = video.poster;
+        card.addEventListener('pointerenter', (event) => {
+            if (event.pointerType !== 'mouse') return;
+            if (!thumbVideo.hasAttribute('src')) thumbVideo.src = video.src;
             thumbVideo.play().catch(() => {});
         });
         card.addEventListener('mouseleave', () => {
@@ -159,6 +157,12 @@ document.addEventListener('DOMContentLoaded', () => {
     function openModal(video) {
         const categoryLabel = CATEGORY_LABELS[video.category] || video.category;
 
+        const error = document.getElementById('modal-video-error');
+        error.hidden = true;
+        document.getElementById('modal-video-download').href = video.src;
+        modalVideo.onerror = () => { error.hidden = false; };
+        modalVideo.poster = video.poster;
+        modalVideo.muted = false;
         modalVideo.src = video.src;
         modalTitle.textContent = video.title;
         modalDescription.textContent = video.description;
@@ -168,27 +172,16 @@ document.addEventListener('DOMContentLoaded', () => {
         modalOverlay.classList.add('active');
         document.body.style.overflow = 'hidden';
 
-        modalVideo.onerror = function() {
-            console.warn('Galeri video oynatılamadı:', video.src);
-        };
-
-        setTimeout(() => {
-            const p = modalVideo.play();
-            if (p !== undefined) {
-                p.catch(e => {
-                    console.log('Galeri autoplay sessize alınıyor:', e);
-                    modalVideo.muted = true;
-                    modalVideo.play().catch(() => {});
-                });
-            }
-        }, 400);
+        modalVideo.play().catch(() => {});
     }
 
     function closeModal() {
         modalOverlay.classList.remove('active');
         document.body.style.overflow = '';
         modalVideo.pause();
-        modalVideo.src = '';
+        modalVideo.onerror = null;
+        modalVideo.removeAttribute('src');
+        modalVideo.load();
     }
 
     // ===== Event Listeners =====

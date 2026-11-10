@@ -3839,7 +3839,20 @@
             overflow: hidden;
         }
 
-        /* 9:16 Dikey Ekran Player */
+        #refVideoModal .ref-video-box { position: relative; }
+
+        #refVideoModal .ref-video-close {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            z-index: 20;
+            width: 44px;
+            height: 44px;
+            color: #fff;
+            background: rgba(0, 0, 0, .75);
+        }
+
+        /* Video player */
         .ref-video-screen {
             position: relative;
             aspect-ratio: 9 / 16;
@@ -4039,6 +4052,18 @@
                 grid-template-columns: 1fr 1fr;
                 gap: 10px;
             }
+        }
+
+
+        @media (max-width: 820px), (max-height: 500px) {
+            #refVideoModal { padding: 8px; }
+            #refVideoModal .ref-video-box { max-height: calc(100dvh - 16px); }
+            #refVideoModal .ref-video-body-layout {
+                max-height: calc(100dvh - 16px);
+                overflow-y: auto;
+                overscroll-behavior: contain;
+            }
+            #refVideoModal .ref-video-screen { max-height: 64dvh; }
         }
 
         /* Web Preview Modal */
@@ -4330,7 +4355,6 @@
                         <a href="#referanslar" class="nav-link">Referanslarımız</a>
                     </li>
                     <li class="nav-item">
-                        <a href="referans%20videolar/referanslar.html" class="nav-link"><i class="fa-solid fa-play" style="font-size: 11px; margin-right: 4px; color: var(--primary);"></i> Çekimlerimiz</a>
                     </li>
                     <li class="nav-item">
                         <a href="#sss" class="nav-link">S.S.S.</a>
@@ -4397,7 +4421,6 @@
                 <a href="#referanslar" class="mobile-nav-link mob-link">Referanslarımız</a>
             </li>
             <li class="mobile-nav-item">
-                <a href="referans%20videolar/referanslar.html" class="mobile-nav-link mob-link"><i class="fa-solid fa-play" style="font-size: 12px; margin-right: 6px; color: var(--primary);"></i> Video Çekimlerimiz</a>
             </li>
             <li class="mobile-nav-item">
                 <a href="#sss" class="mobile-nav-link mob-link">S.S.S.</a>
@@ -5045,7 +5068,6 @@
                     </div>
                 </div>
                 <div class="ref-cta-actions">
-                    <a href="referans%20videolar/referanslar.html" class="btn btn-outline"><i class="fa-solid fa-film"></i> Tüm Çekimlerimiz</a>
                     <a href="#iletisim" class="btn btn-ref-teklif" style="background: #ffffff; color: #0062FF !important; font-weight: 700; border: 1.5px solid #00C2FF; box-shadow: 0 4px 18px rgba(0, 98, 255, 0.25);">
                         <i class="fa-solid fa-paper-plane" style="color: #0062FF;"></i> <span style="color: #0062FF;">Teklif Alın</span>
                     </a>
@@ -5395,7 +5417,6 @@
                         <li><a href="#hikayemiz"><i class="fa-solid fa-angle-right"></i> Hikayemiz</a></li>
                         <li><a href="#nasil-calisiyoruz"><i class="fa-solid fa-angle-right"></i> Nasıl Çalışıyoruz?</a></li>
                         <li><a href="#referanslar"><i class="fa-solid fa-angle-right"></i> Referanslarımız</a></li>
-                        <li><a href="referans%20videolar/referanslar.html"><i class="fa-solid fa-angle-right"></i> Video Çekimlerimiz</a></li>
                         <li><a href="#sss"><i class="fa-solid fa-angle-right"></i> Sıkça Sorulan Sorular</a></li>
                     </ul>
                 </div>
@@ -5622,12 +5643,13 @@
          ================================================================ -->
     <div id="refVideoModal" class="ref-modal-overlay" onclick="handleRefOverlayClick(event, 'refVideoModal')">
         <div class="ref-video-box">
+            <button type="button" class="modal-close-btn ref-video-close" onclick="closeRefModal('refVideoModal')" aria-label="Kapat">&times;</button>
             <div class="ref-video-body-layout">
                 <!-- Sol Kolon: 9:16 Dikey Ekran Player -->
                 <div class="ref-video-screen" id="refVideoScreen">
                     <!-- HTML5 Video Player (9:16 Dikey) -->
                     <video id="refHtml5Video" class="ref-video-element" controls playsinline preload="metadata" style="display: none;">
-                        <source id="refVideoSource" src="" type="video/mp4">
+
                         Tarayıcınız video oynatmayı desteklemiyor.
                     </video>
                     <!-- YouTube & Vimeo Embed Desteği -->
@@ -5636,15 +5658,12 @@
                     <!-- Video Hata / Desteklenmeyen Codec Bildirimi -->
                     <div id="refVideoErrorMsg" style="display: none; position: absolute; inset: 0; background: rgba(10, 15, 30, 0.92); z-index: 10; flex-direction: column; align-items: center; justify-content: center; padding: 24px; text-align: center; gap: 12px;">
                         <i class="fa-solid fa-triangle-exclamation" style="font-size: 36px; color: #F59E0B;"></i>
-                        <h5 style="color: #fff; font-size: 16px; font-weight: 700; margin: 0;">Tarayıcı Video Çözücü Uyarısı</h5>
-                        <p style="color: #94A3B8; font-size: 12.5px; line-height: 1.5; margin: 0;">Bu video yüksek sıkıştırmalı H.265 (HEVC/Apple MOV) codec ile kaydedilmiş. Tarayıcınızda açılmıyorsa doğrudan indirebilir veya Chrome/Edge üzerinde izleyebilirsiniz.</p>
+                        <h5 style="color: #fff; font-size: 16px; font-weight: 700; margin: 0;">Video yüklenemedi</h5>
+                        <p style="color: #94A3B8; font-size: 12.5px; line-height: 1.5; margin: 0;">Videoyu indirerek cihazınızda açabilirsiniz.</p>
                         <div style="display: flex; gap: 8px; margin-top: 6px; flex-wrap: wrap; justify-content: center;">
                             <a id="refVideoDirectDownload" href="" download class="btn btn-primary btn-sm" style="font-size: 12px; padding: 6px 14px;">
                                 <i class="fa-solid fa-download"></i> Videoyu İndir
                             </a>
-                            <button type="button" class="btn btn-outline btn-sm" onclick="playRefVideoDemo()" style="font-size: 12px; padding: 6px 14px; color: #fff; border-color: rgba(255,255,255,0.3);">
-                                <i class="fa-solid fa-play"></i> 4K Demo Oynat
-                            </button>
                         </div>
                     </div>
 
@@ -5670,7 +5689,6 @@
                                 <span class="ref-badge-category" id="videoModalBadge"><i class="fa-solid fa-clapperboard"></i> Emlak Çekimi</span>
                                 <span class="ref-badge-916"><i class="fa-solid fa-mobile-screen"></i> 9:16 Dikey Format</span>
                             </div>
-                            <button type="button" class="modal-close-btn" style="position: static; background: rgba(255,255,255,0.12); color: #fff; width: 32px; height: 32px;" onclick="closeRefModal('refVideoModal')" aria-label="Kapat">&times;</button>
                         </div>
 
                         <h4 id="videoModalTitle" class="ref-video-panel-title">Video Başlığı</h4>
@@ -5772,6 +5790,7 @@
 
 
 
+    <script src="assets/js/references.js"></script>
     <script>
         // 1. Navbar Scroll Effect & Active Highlight
         const navbar = document.getElementById('navbar');
@@ -6178,175 +6197,6 @@ ${message}
         // REFERANSLARIMIZ (PORTFOLIO, QR MENÜ & 4K VİDEO MODAL LOGIC + ADMIN)
         // ================================================================
         
-        const DEFAULT_REFERENCES = {
-            "luna-bistro": {
-                title: "Luna Modern Bistro & Lounge QR Menü",
-                client: "Luna Bistro & Lounge • Gaziantep",
-                type: "menu",
-                category: "menu",
-                qrUrl: "https://mavitikmedya.com/",
-                simMenuTitle: "Luna Modern Bistro",
-                simMenuSub: "Şefin Özel Seçimleri & Kokteyller • ⭐ 4.9",
-                desc: "Lüks bistro ve kokteyl lounge konsepti için tasarladığımız çok dilli, profesyonel fotoğraflı ve alerjen filtreli yeni nesil temassız QR menü sistemi.",
-                poster: "assets/images/referanslar/ref-menu-1.jpg",
-                tags: ["QR Menü", "Bistro Lounge", "Çok Dilli", "Hızlı Sipariş"],
-                items: [
-                    { title: "Trüflü Dana Bonfile", price: "₺680", sub: "Patates püresi, ızgara kuşkonmaz ve trüf sosu", img: "assets/images/referanslar/ref-menu-1.jpg" },
-                    { title: "Burrata & Organik Domates", price: "₺420", sub: "Fesleğen pesto sos ve balzamik glaze ile", img: "assets/images/referanslar/ref-menu-1.jpg" },
-                    { title: "Yaban Mantarlı Risotto", price: "₺460", sub: "Parmesan çıtırı ve adaçayı aroması ile", img: "assets/images/referanslar/ref-menu-1.jpg" },
-                    { title: "İmza Botanik Kokteyl", price: "₺380", sub: "Taze narenciye, biberiye ve aromatik botanik", img: "assets/images/referanslar/ref-mekan-1.jpg" }
-                ]
-            },
-            "daily-brew": {
-                title: "The Daily Brew Specialty Coffee QR Menü",
-                client: "The Daily Brew • Kafe & Bakery",
-                type: "menu",
-                category: "menu",
-                qrUrl: "https://mavitikmedya.com/",
-                simMenuTitle: "The Daily Brew",
-                simMenuSub: "Nitelikli 3. Dalga Kahve & Taze Fırın • ⭐ 4.8",
-                desc: "Specialty kahve çekirdekleri, günlük taze kruvasanlar ve sağlıklı bowl alternatifleri için şık, dinamik kategorili ve masaya sipariş özellikli QR menü.",
-                poster: "assets/images/referanslar/ref-menu-2.jpg",
-                tags: ["Kahve Menü", "Specialty Coffee", "Kruvasan", "Dijital Sipariş"],
-                items: [
-                    { title: "Fıstıklı Artisan Kruvasan", price: "₺180", sub: "Gaziantep boz fıstık kreması dolgulu", img: "assets/images/referanslar/ref-menu-2.jpg" },
-                    { title: "Iced Ceremonial Matcha Latte", price: "₺160", sub: "Japon Uji seremoniyel matcha ve yulaf sütü", img: "assets/images/referanslar/ref-menu-2.jpg" },
-                    { title: "Single Origin Geisha Espresso", price: "₺140", sub: "Etiyopya Yirgacheffe, yasemin ve şeftali notaları", img: "assets/images/referanslar/ref-menu-2.jpg" },
-                    { title: "San Sebastian Cheesecake", price: "₺210", sub: "Sıcak Belçika çikolatası sosu ile servis", img: "assets/images/referanslar/ref-menu-2.jpg" }
-                ]
-            },
-            "balkon-kafe": {
-                title: "Balkon Kafe & Restaurant QR Menü",
-                client: "Balkon Kafe & Restaurant • Gaziantep",
-                type: "menu",
-                category: "menu",
-                qrUrl: "https://mavitikmedya.com/",
-                simMenuTitle: "Balkon Kafe & Restaurant",
-                simMenuSub: "Panoramik Teras & Zengin Lezzetler • ⭐ 4.8",
-                desc: "Zengin serpme kahvaltısı, dünya mutfağı ve teras atmosferi için garson çağırma entegrasyonlu, anlık fiyat güncellenebilir akıllı QR menü.",
-                poster: "assets/images/referanslar/ref-menu-3.jpg",
-                tags: ["Restoran Menü", "Teras Kafe", "Kahvaltı & Burger", "Garson Çağır"],
-                items: [
-                    { title: "Balkon Özel Serpme Kahvaltı", price: "₺450", sub: "Yöresel peynirler, sıcak pişiler, organik reçeller ve sınırsız çay", img: "assets/images/referanslar/ref-menu-3.jpg" },
-                    { title: "Karamelize Soğanlı Balkon Burger", price: "₺320", sub: "200gr dinlendirilmiş dana köfte, cheddar peyniri ve trüflü patates", img: "assets/images/referanslar/ref-menu-3.jpg" },
-                    { title: "Taze İtalyan Fettuccine Alfredo", price: "₺290", sub: "Tavuk dilimleri, taze kültür mantarı, krema ve parmesan", img: "assets/images/referanslar/ref-menu-3.jpg" },
-                    { title: "San Sebastian Cheesecake", price: "₺180", sub: "Belçika çikolatası eritmesi eşliğinde sıcak servis", img: "assets/images/referanslar/ref-menu-3.jpg" }
-                ]
-            },
-            "mavitik-web": {
-                title: "Mavi Tik Medya Ajansı Resmi Web Platformu",
-                client: "Mavi Tik Medya Ajansı • Kurumsal & Dijital",
-                type: "web",
-                category: "web",
-                webUrl: "https://mavitikmedya.com/",
-                poster: "assets/images/referanslar/ref-web-3.jpg",
-                img: "assets/images/referanslar/ref-web-3.jpg",
-                desc: "Ajansımızın dinamik vizyonunu yansıtan modern cam-morfik tasarım, Apple esintili interaktif 3D lazer intro animasyonu, yüksek hızlı bulut CDN ve tam SEO uyumlu kurumsal web altyapısı.",
-                tags: ["Next-Gen Web", "Glassmorphism", "Apple Tarzı Intro", "Gaziantep Ajans", "SEO %100"]
-            },
-            "krextech": {
-                title: "Krextech Yazılım & Yapay Zeka Çözümleri",
-                client: "Krextech Bilişim & Teknoloji A.Ş.",
-                type: "web",
-                category: "web",
-                webUrl: "https://krextech.com/",
-                poster: "assets/images/referanslar/ref-web-4.jpg",
-                img: "assets/images/referanslar/ref-web-4.jpg",
-                desc: "Yapay zeka modelleri, kurumsal SaaS ürünleri ve modern bulut yazılım çözümlerini temsil eden yüksek performanslı, veri görselleştirmeli kurumsal teknoloji web sitesi.",
-                tags: ["SaaS Platform", "Yapay Zeka (AI)", "Cloud Mimarisi", "Modern UI/UX", "Full Responsive"]
-            },
-            "icerik-cekimi-1": {
-                title: "İstedikleri Şeyler Farklı Ama Mantık Aynı",
-                client: "Mavi Tik Medya Ajansı • İçerik Prodüksiyonu",
-                badge: "İçerik Çekimi • 9:16 Reels",
-                type: "video",
-                category: "icerik",
-                poster: "assets/images/referanslar/ref-icerik-1.jpg",
-                videoSrc: "videolar/icerik-cekimi-1.mp4",
-                desc: "Sosyal medya ve reels formatında özgün içerik çekimi. Markanın dijital dilini yansıtan, viral potansiyelli 9:16 dikey video prodüksiyonu.",
-                tags: ["videography", "videographer", "keşfetteyiz", "viral", "reels", "sosyalmedya"],
-                droneLabel: "İçerik & Prodüksiyon",
-                specs: {
-                    drone: "Stüdyo & El Tipi Gimbal",
-                    camera: "4K Dikey Video Sensörü",
-                    resolution: "9:16 Dikey 4K Reels",
-                    post: "Reels Kurgusu & Ses Tasarımı"
-                }
-            },
-            "emlak-cekimi-1": {
-                title: "Evsan Gayrimenkul • 4K Emlak & Mimari Tanıtım Filmi",
-                client: "Evsan Gayrimenkul • 4K Emlak Tanıtımı",
-                badge: "Emlak Çekimi • 4K Drone",
-                type: "video",
-                category: "emlak",
-                poster: "assets/images/referanslar/ref-emlak-1.jpg",
-                videoSrc: "videolar/emlak-cekimi.mp4",
-                desc: "Evsan Gayrimenkul için geniş açılı drone uçuşları, iç mekan akıcı gimbal geçişleri ve profesyonel mimari renk kurgusuyla hazırlanan 4K emlak tanıtım filmi.",
-                tags: ["EvsanGayrimenkul", "EmlakÇekimi", "4KDrone", "MimariÇekim"],
-                droneLabel: "Drone & Gimbal",
-                specs: {
-                    drone: "4K FPV & Sinematik Drone",
-                    camera: "Sony Cinema Line + Geniş Açı",
-                    resolution: "4K UHD 60FPS",
-                    post: "Renk Kurgusu & Ses Tasarımı"
-                }
-            },
-            "emlak-cekimi-2": {
-                title: "Evsan Gayrimenkul • Lüks Yaşam & Rezidans Tanıtım Filmi",
-                client: "Evsan Gayrimenkul • Mimari Tanıtım",
-                badge: "Emlak Çekimi • 4K UHD",
-                type: "video",
-                category: "emlak",
-                poster: "assets/images/referanslar/ref-emlak-2.jpg",
-                videoSrc: "videolar/emlak-cekimi-2.mp4",
-                desc: "Evsan Gayrimenkul portföyündeki prestijli konut ve mimari alanların estetiğini, iç mekan aydınlatmasını ve yaşam standardını ortaya koyan 4K sinematik prodüksiyon.",
-                tags: ["EvsanGayrimenkul", "Rezidans", "SinematikKamera", "Gayrimenkul"],
-                droneLabel: "Gimbal & Çekim",
-                specs: {
-                    drone: "Akıcı Gimbal Stabilizasyonu",
-                    camera: "Ultra HD Cinema Sensör",
-                    resolution: "4K UHD 60FPS",
-                    post: "Mimari Renk Düzenleme"
-                }
-            },
-            "mekan-cekimi-1": {
-                title: "Restoran & Kafe Atmosfer Mekan Çekimi",
-                client: "Mavi Tik Medya Ajansı • Mekan Çekimleri",
-                badge: "Mekan Çekimi • 4K 60FPS",
-                type: "video",
-                category: "mekan",
-                poster: "assets/images/referanslar/ref-mekan-1.jpg",
-                videoSrc: "videolar/WhatsApp-Video-2026-10-31-at-18.51.30.mp4",
-                desc: "Mekanın enerjisini, lezzet sunumlarını ve estetik mimari detaylarını sosyal medya ve kurumsal tanıtım için öne çıkaran 4K dinamik video prodüksiyonu.",
-                tags: ["MekanÇekimi", "RestoranTanıtımı", "ReelsKurgu", "SosyalMedya"],
-                droneLabel: "Dinamik Çekim",
-                specs: {
-                    drone: "El Tipi Gimbal & Slider",
-                    camera: "Sony Alpha Serisi 4K",
-                    resolution: "4K 60FPS Dikey/Yatay",
-                    post: "Instagram Reels & Tanıtım Kurgusu"
-                }
-            },
-            "urun-cekimi-1": {
-                title: "Özel Tasarım Nargile & Ürün Çekimi",
-                client: "Mavi Tik Medya Ajansı • Ürün Prodüksiyonu",
-                badge: "Ürün Çekimi • 9:16 Dikey",
-                type: "video",
-                category: "urun",
-                poster: "assets/images/referanslar/ref-urun-fixed.jpg",
-                videoSrc: "videolar/urun-cekimi.MOV",
-                desc: "Özel stüdyo ışık kurguları, duman efektleri ve dinamik makro detaylarla gerçekleştirilen 9:16 dikey profesyonel nargile ve ürün tanıtım prodüksiyonu.",
-                tags: ["ÜrünÇekimi", "NargileÇekimi", "9:16Reels", "StüdyoProdüksiyon"],
-                droneLabel: "Stüdyo & Işık",
-                specs: {
-                    drone: "Özel Stüdyo Işık & Duman",
-                    camera: "Makro Lens & 4K Sensör",
-                    resolution: "9:16 Dikey 4K Makro Video",
-                    post: "Ticari Reklam & Renk Kurgusu"
-                }
-            }
-        };
-
         // LocalStorage entegrasyonu
         let MAVI_TIK_REFERENCES = {};
         try {
@@ -6355,7 +6205,7 @@ ${message}
                 MAVI_TIK_REFERENCES = JSON.parse(saved);
 
                 // İçerik çekimlerine son eklenen videoyu ve 16:9 estetik kapak görsellerini senkronize et
-                if (!MAVI_TIK_REFERENCES["icerik-cekimi-1"] || !MAVI_TIK_REFERENCES["icerik-cekimi-1"].videoSrc || MAVI_TIK_REFERENCES["icerik-cekimi-1"].videoSrc.includes("#") || MAVI_TIK_REFERENCES["icerik-cekimi-1"].poster.includes("ref-urun-1.jpg")) {
+                if (!MAVI_TIK_REFERENCES["icerik-cekimi-1"] || !MAVI_TIK_REFERENCES["icerik-cekimi-1"].videoSrc || MAVI_TIK_REFERENCES["icerik-cekimi-1"].videoSrc.includes("#") || MAVI_TIK_REFERENCES["icerik-cekimi-1"].poster?.includes("ref-urun-1.jpg")) {
                     MAVI_TIK_REFERENCES["icerik-cekimi-1"] = JSON.parse(JSON.stringify(DEFAULT_REFERENCES["icerik-cekimi-1"]));
                     try { localStorage.setItem("mavitik_custom_refs", JSON.stringify(MAVI_TIK_REFERENCES)); } catch(e){}
                 }
@@ -6376,6 +6226,12 @@ ${message}
             }
         } catch (e) {
             MAVI_TIK_REFERENCES = JSON.parse(JSON.stringify(DEFAULT_REFERENCES));
+        }
+
+        for (const reference of Object.values(MAVI_TIK_REFERENCES)) {
+            if (reference.type === 'video') {
+                reference.videoSrc = normalizeReferenceVideoPath(reference.videoSrc);
+            }
         }
 
         function saveReferencesToStorage() {
@@ -6468,7 +6324,7 @@ ${message}
                     else if (cat === 'icerik') { badgeIcon = 'fa-solid fa-clapperboard'; badgeCat = 'İçerik Çekimi'; }
 
                     const videoTag = data.videoSrc ? `
-                                <video class="ref-card-video-thumb" src="${data.videoSrc}#t=0.5" preload="metadata" muted playsinline loop></video>
+                                <video class="ref-card-video-thumb" src="${data.videoSrc}#t=0.5" preload="none" muted playsinline loop></video>
                                 <img src="${posterImg}" alt="${data.title}" loading="lazy" class="ref-fallback-img" onerror="this.style.display='none'">
                     ` : `<img src="${posterImg}" alt="${data.title}" loading="lazy">`;
 
@@ -6477,7 +6333,7 @@ ${message}
                             <div class="ref-card-media" onclick="openRefModal('${id}')">
                                 ${videoTag}
                                 <span class="ref-badge-category"><i class="${badgeIcon}"></i> ${badgeCat}</span>
-                                <span class="ref-badge-quality"><i class="fa-solid fa-mobile-screen"></i> 9:16 Dikey 4K</span>
+                                <span class="ref-badge-quality"><i class="fa-solid fa-mobile-screen"></i> Çekimi İzle</span>
                                 <div class="ref-card-overlay">
                                     <div class="ref-overlay-action"><i class="fa-solid fa-play"></i></div>
                                 </div>
@@ -6506,8 +6362,8 @@ ${message}
             grid.querySelectorAll('.ref-card').forEach(card => {
                 const vid = card.querySelector('video.ref-card-video-thumb');
                 if (vid) {
-                    card.addEventListener('mouseenter', () => {
-                        vid.currentTime = 0;
+                    card.addEventListener('pointerenter', (event) => {
+                        if (event.pointerType !== 'mouse') return;
                         vid.play().catch(() => {});
                     });
                     card.addEventListener('mouseleave', () => {
@@ -6654,7 +6510,7 @@ ${message}
                 }
                 const waBtn = document.getElementById('videoModalWaBtn');
                 if (waBtn) {
-                    waBtn.href = 'https://wa.me/905533650396?text=' + encodeURIComponent('Merhaba, ' + data.title + ' (9:16 Dikey Çekim) referansınızı inceledim ve benzer bir çekim yaptırmak istiyorum.');
+                    waBtn.href = 'https://wa.me/905533650396?text=' + encodeURIComponent('Merhaba, ' + data.title + ' referansınızı inceledim ve benzer bir çekim yaptırmak istiyorum.');
                 }
                 const droneLabel = document.getElementById('refSpecDroneLabel');
                 if (droneLabel) {
@@ -6663,7 +6519,7 @@ ${message}
                 const specs = data.specs || {};
                 document.getElementById('refSpecDrone').textContent = specs.drone || '4K Drone & Gimbal';
                 document.getElementById('refSpecCamera').textContent = specs.camera || 'Cinema Line 4K';
-                document.getElementById('refSpecRes').textContent = specs.resolution || '9:16 Dikey 4K';
+                document.getElementById('refSpecRes').textContent = specs.resolution || '?';
                 document.getElementById('refSpecPost').textContent = specs.post || 'Renk & Ses Tasarımı';
                 
                 
@@ -6704,14 +6560,9 @@ ${message}
                         placeholder.style.display = 'none';
                     } else {
                         // Local MP4, MOV or WebM video file
-                        const videoSource = document.getElementById('refVideoSource');
-                        if (videoSource) {
-                            videoSource.src = src;
-                        const dlBtn = document.getElementById('refVideoDirectDownload');
-                        if (dlBtn) dlBtn.href = src;
-                            videoSource.type = src.toLowerCase().endsWith('.mov') ? 'video/quicktime' : 'video/mp4';
-                        }
-                        // HTML5 Video doğrudan src desteği (tarayıcı uyumluluğu için çift atama)
+                        document.getElementById('refVideoDirectDownload').href = src;
+                        html5Video.muted = false;
+                        html5Video.poster = data.poster || '';
                         html5Video.src = src;
                         html5Video.style.display = 'block';
                         placeholder.style.display = 'none';
@@ -6725,15 +6576,7 @@ ${message}
                         const errMsg = document.getElementById('refVideoErrorMsg');
                         if (errMsg) errMsg.style.display = 'none';
 
-                        html5Video.load();
-                        const playPromise = html5Video.play();
-                        if (playPromise !== undefined) {
-                            playPromise.catch(e => {
-                                console.log('Video autoplay prevented (sessiz moda geçiliyor):', e);
-                                html5Video.muted = true;
-                                html5Video.play().catch(err => console.log('Oynatma başlatılamadı:', err));
-                            });
-                        }
+                        html5Video.play().catch(() => {});
                     }
                 }
 
@@ -6778,6 +6621,7 @@ ${message}
                 // Video açıksa durdur
                 const video = modal.querySelector('video');
                 if (video) {
+                    video.onerror = null;
                     video.pause();
                     video.removeAttribute('src');
                     video.load();
@@ -6825,12 +6669,12 @@ ${message}
         function playRefVideoDemo() {
             const html5Video = document.getElementById('refHtml5Video');
             const placeholder = document.getElementById('refVideoPlaceholder');
-            const videoSource = document.getElementById('refVideoSource');
+
 
             // Kullanıcı kendi dosyasını yükleyene kadar oynatılabilecek 4K örnek sinematik demo
             const sampleDemoUrl = 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4';
             
-            videoSource.src = sampleDemoUrl;
+            html5Video.src = sampleDemoUrl;
             html5Video.style.display = 'block';
             placeholder.style.display = 'none';
             html5Video.load();
